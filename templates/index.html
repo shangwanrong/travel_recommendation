@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>智游推荐 - 旅游路线智能推荐</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <!-- 顶部导航栏 -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <span class="logo">智游推荐</span>
+            </div>
+            <div class="nav-right">
+                <ul class="nav-menu">
+                    <li><a href="/">首页</a></li>
+                    <li><a href="#routes-section">热门路线</a></li>
+                    <li><a href="#form-section">定制行程</a></li>
+                </ul>
+                <!-- 用户区域：登录前 -->
+                <div id="nav-auth">
+                    <button class="nav-login-btn" onclick="showLoginModal()">登录 / 注册</button>
+                </div>
+                <!-- 用户区域：登录后 -->
+                <div id="nav-user-area" style="display:none;" class="nav-user-area">
+                    <div class="nav-user-pill" onclick="toggleUserDropdown()">
+                        <span class="nav-user-avatar" id="nav-avatar">👤</span>
+                        <span class="nav-user-name" id="nav-username"></span>
+                        <span class="nav-dropdown-arrow">▾</span>
+                    </div>
+                    <div class="nav-dropdown" id="userDropdown">
+                        <a href="/profile" class="nav-dropdown-item">
+                            <span>👤</span> 个人中心
+                        </a>
+                        <a href="/profile#footprints" class="nav-dropdown-item">
+                            <span>📍</span> 我的打卡
+                        </a>
+                        <a href="/profile#favorites" class="nav-dropdown-item">
+                            <span>❤️</span> 我的收藏
+                        </a>
+                        <div class="nav-dropdown-divider"></div>
+                        <a href="#" class="nav-dropdown-item nav-dropdown-logout" onclick="doLogout()">
+                            <span>🚪</span> 退出登录
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主内容区 -->
+    <main class="main-content">
+        <!-- 定制表单区域 -->
+        <section class="form-section" id="form-section">
+            <div class="container">
+                <div class="form-card">
+                    <h2>✨ 定制您的专属旅程</h2>
+                    <form id="recommend-form">
+                        <div class="form-row">
+                            <select id="province-select" name="province" required>
+                                <option value="">选择省份</option>
+                            </select>
+                            <select id="city-select" name="city" required disabled>
+                                <option value="">选择城市</option>
+                            </select>
+                            <select id="transport-select" name="transport" required>
+                                <option value="">出行方式</option>
+                                <option value="self-driving">🚗 自驾游</option>
+                                <option value="public-transport">🚇 公共交通</option>
+                            </select>
+                            <button type="submit" class="btn-primary">开始推荐</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- 热门路线展示区 -->
+        <section class="routes-section" id="routes-section">
+            <div class="container">
+                <h2 id="section-title">🔥 热门路线推荐</h2>
+                <div id="routes-container" class="routes-grid">
+                    <!-- 路线卡片将通过JavaScript动态加载 -->
+                    <div class="loading">加载中...</div>
+                </div>
+                <button id="back-hot" class="btn-secondary" style="display: none;">返回热门路线</button>
+            </div>
+        </section>
+    </main>
+
+    <!-- 登录/注册弹窗 -->
+    <div id="authModal" class="auth-modal">
+        <div class="auth-modal-content">
+            <button class="auth-close" onclick="closeLoginModal()">&times;</button>
+            <div class="auth-tabs">
+                <button class="auth-tab active" onclick="switchAuthTab('login')">登录</button>
+                <button class="auth-tab" onclick="switchAuthTab('register')">注册</button>
+            </div>
+
+            <!-- 登录表单 -->
+            <form id="login-form" onsubmit="handleLogin(event)">
+                <div class="auth-field">
+                    <label>用户名</label>
+                    <input type="text" id="login-username" placeholder="请输入用户名" required autocomplete="username">
+                </div>
+                <div class="auth-field">
+                    <label>密码</label>
+                    <input type="password" id="login-password" placeholder="请输入密码" required autocomplete="current-password">
+                </div>
+                <div class="auth-error" id="login-error"></div>
+                <button type="submit" class="btn-primary auth-submit">登录</button>
+            </form>
+
+            <!-- 注册表单 -->
+            <form id="register-form" onsubmit="handleRegister(event)" style="display:none;">
+                <div class="auth-field">
+                    <label>用户名</label>
+                    <input type="text" id="reg-username" placeholder="2-20个字符" required autocomplete="username">
+                </div>
+                <div class="auth-field">
+                    <label>邮箱（选填）</label>
+                    <input type="email" id="reg-email" placeholder="your@email.com" autocomplete="email">
+                </div>
+                <div class="auth-field">
+                    <label>密码</label>
+                    <input type="password" id="reg-password" placeholder="至少6个字符" required autocomplete="new-password">
+                </div>
+                <div class="auth-field">
+                    <label>确认密码</label>
+                    <input type="password" id="reg-password2" placeholder="再次输入密码" required autocomplete="new-password">
+                </div>
+                <div class="auth-error" id="register-error"></div>
+                <button type="submit" class="btn-primary auth-submit">注册</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

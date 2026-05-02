@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人中心 - 智游推荐</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        .profile-header {
+            background: linear-gradient(135deg, #89C4F4 0%, #667eea 100%);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .profile-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            margin: 0 auto 15px;
+            border: 3px solid rgba(255,255,255,0.6);
+        }
+
+        .profile-username {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .profile-bio {
+            font-size: 14px;
+            opacity: 0.85;
+        }
+
+        .profile-stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 20px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .stat-label {
+            font-size: 13px;
+            opacity: 0.8;
+        }
+
+        .profile-content {
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .tab-nav {
+            display: flex;
+            gap: 5px;
+            margin-bottom: 25px;
+            background: white;
+            border-radius: 12px;
+            padding: 5px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 14px 20px;
+            border: none;
+            background: transparent;
+            color: #718096;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: all 0.3s;
+        }
+
+        .tab-btn.active {
+            background: linear-gradient(to right, #89C4F4, #B8E2F2);
+            color: white;
+        }
+
+        .tab-btn:hover:not(.active) {
+            background: #f5f9fc;
+        }
+
+        .tab-panel {
+            display: none;
+        }
+
+        .tab-panel.active {
+            display: block;
+        }
+
+        .section-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .section-title {
+            font-size: 18px;
+            color: #2c5282;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .route-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            margin-bottom: 15px;
+            display: flex;
+        }
+
+        .route-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .route-card-image {
+            width: 200px;
+            height: 140px;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        .route-card-content {
+            padding: 15px 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .route-card-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: #2c5282;
+            margin-bottom: 8px;
+        }
+
+        .route-card-info {
+            font-size: 13px;
+            color: #718096;
+            margin-bottom: 8px;
+        }
+
+        .route-card-time {
+            font-size: 12px;
+            color: #a0aec0;
+        }
+
+        .route-card-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 8px;
+        }
+
+        .btn-unfav {
+            padding: 5px 12px;
+            border: 1px solid #e53e3e;
+            color: #e53e3e;
+            background: white;
+            border-radius: 6px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-unfav:hover {
+            background: #e53e3e;
+            color: white;
+        }
+
+        .btn-clear-history {
+            padding: 8px 16px;
+            background: #f5f9fc;
+            color: #718096;
+            border: none;
+            border-radius: 8px;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-clear-history:hover {
+            background: #e53e3e;
+            color: white;
+        }
+
+        /* 足迹地图 */
+        .footprint-map {
+            width: 100%;
+            height: 400px;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 2px solid #e0e0e0;
+            margin-bottom: 20px;
+        }
+
+        .footprint-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 12px;
+        }
+
+        .footprint-item {
+            background: #f5f9fc;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .footprint-item:hover {
+            background: #89C4F4;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .footprint-attraction {
+            font-size: 15px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .footprint-city {
+            font-size: 13px;
+            opacity: 0.75;
+            margin-bottom: 4px;
+        }
+
+        .footprint-date {
+            font-size: 12px;
+            opacity: 0.6;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #a0aec0;
+        }
+
+        .empty-state .empty-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .empty-state p {
+            font-size: 15px;
+        }
+
+        .empty-state a {
+            color: #89C4F4;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .empty-state a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .route-card {
+                flex-direction: column;
+            }
+            .route-card-image {
+                width: 100%;
+                height: 160px;
+            }
+            .profile-stats {
+                gap: 25px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+</head>
+<body>
+    <!-- 导航栏由 index.html 中的样式控制 -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <span class="logo">智游推荐</span>
+            </div>
+            <div class="nav-right">
+                <ul class="nav-menu">
+                    <li><a href="/">首页</a></li>
+                </ul>
+                <div id="nav-user-area" class="nav-user-area">
+                    <div class="nav-user-pill" onclick="toggleUserDropdown()">
+                        <span class="nav-user-avatar" id="nav-avatar">👤</span>
+                        <span class="nav-user-name" id="nav-username">加载中</span>
+                        <span class="nav-dropdown-arrow">▾</span>
+                    </div>
+                    <div class="nav-dropdown" id="userDropdown">
+                        <a href="/profile" class="nav-dropdown-item">
+                            <span>👤</span> 个人中心
+                        </a>
+                        <a href="/profile#footprints" class="nav-dropdown-item">
+                            <span>📍</span> 我的打卡
+                        </a>
+                        <a href="/profile#favorites" class="nav-dropdown-item">
+                            <span>❤️</span> 我的收藏
+                        </a>
+                        <div class="nav-dropdown-divider"></div>
+                        <a href="#" class="nav-dropdown-item nav-dropdown-logout" onclick="doLogout()">
+                            <span>🚪</span> 退出登录
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 个人信息头部 -->
+    <div class="profile-header">
+        <div class="container">
+            <div class="profile-avatar" id="user-avatar">👤</div>
+            <div class="profile-username" id="user-name">加载中...</div>
+            <div class="profile-bio" id="user-bio"></div>
+            <div class="profile-stats">
+                <div class="stat-item">
+                    <div class="stat-number" id="stat-fav">0</div>
+                    <div class="stat-label">收藏</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="stat-footprint">0</div>
+                    <div class="stat-label">打卡</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="stat-history">0</div>
+                    <div class="stat-label">浏览</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 标签页内容 -->
+    <div class="profile-content">
+        <div class="tab-nav">
+            <button class="tab-btn active" onclick="switchTab('favorites')">❤️ 我的收藏</button>
+            <button class="tab-btn" onclick="switchTab('footprints')">📍 打卡足迹</button>
+            <button class="tab-btn" onclick="switchTab('history')">🕐 浏览历史</button>
+        </div>
+
+        <!-- 收藏面板 -->
+        <div class="tab-panel active" id="panel-favorites">
+            <div class="section-card">
+                <div class="section-title">
+                    <span>❤️ 收藏的路线</span>
+                </div>
+                <div id="favorites-container">
+                    <div class="loading">加载中...</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 足迹面板 -->
+        <div class="tab-panel" id="panel-footprints">
+            <div class="section-card">
+                <div class="section-title">
+                    <span>📍 打卡足迹地图</span>
+                </div>
+                <div id="footprint-map" class="footprint-map"></div>
+                <div id="footprint-list" class="footprint-list"></div>
+            </div>
+        </div>
+
+        <!-- 浏览历史面板 -->
+        <div class="tab-panel" id="panel-history">
+            <div class="section-card">
+                <div class="section-title">
+                    <span>🕐 浏览历史</span>
+                    <button class="btn-clear-history" onclick="clearHistory()">清空历史</button>
+                </div>
+                <div id="history-container">
+                    <div class="loading">加载中...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentUser = null;
+        let footprintMap = null;
+
+        // 页面加载
+        document.addEventListener('DOMContentLoaded', async function() {
+            await loadUserInfo();
+            // 根据 URL hash 自动切换 tab
+            const hash = window.location.hash.replace('#', '');
+            if (hash === 'footprints' || hash === 'history') {
+                switchTab(hash);
+            } else {
+                loadFavorites();
+            }
+        });
+
+        // 加载用户信息
+        async function loadUserInfo() {
+            try {
+                const resp = await fetch('/api/user/info');
+                const data = await resp.json();
+
+                if (!data.user) {
+                    window.location.href = '/';
+                    return;
+                }
+
+                currentUser = data.user;
+                document.getElementById('user-name').textContent = currentUser.username;
+                document.getElementById('user-bio').textContent = currentUser.bio || '这个人很懒，什么都没留下';
+                document.getElementById('stat-fav').textContent = currentUser.fav_count || 0;
+                document.getElementById('stat-footprint').textContent = currentUser.footprint_count || 0;
+                document.getElementById('stat-history').textContent = currentUser.history_count || 0;
+
+                // 更新导航栏用户信息
+                document.getElementById('nav-username').textContent = currentUser.username;
+                const firstChar = currentUser.username.charAt(0).toUpperCase();
+                document.getElementById('nav-avatar').textContent = firstChar;
+            } catch (e) {
+                console.error('加载用户信息失败:', e);
+                window.location.href = '/';
+            }
+        }
+
+        // 切换标签页
+        function switchTab(tab) {
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.tab-panel').forEach(panel => panel.classList.remove('active'));
+
+            // 找到对应的 tab 按钮并激活
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            const tabMap = { favorites: 0, footprints: 1, history: 2 };
+            const idx = tabMap[tab] || 0;
+            if (tabBtns[idx]) tabBtns[idx].classList.add('active');
+            document.getElementById('panel-' + tab).classList.add('active');
+
+            if (tab === 'favorites') loadFavorites();
+            else if (tab === 'footprints') loadFootprints();
+            else if (tab === 'history') loadHistory();
+        }
+
+        // 加载收藏列表
+        async function loadFavorites() {
+            try {
+                const resp = await fetch('/api/favorites');
+                const data = await resp.json();
+                const container = document.getElementById('favorites-container');
+
+                if (!data.favorites || data.favorites.length === 0) {
+                    container.innerHTML = `
+                        <div class="empty-state">
+                            <div class="empty-icon">❤️</div>
+                            <p>还没有收藏路线</p>
+                            <p><a href="/">去发现精彩路线</a></p>
+                        </div>`;
+                    return;
+                }
+
+                container.innerHTML = data.favorites.map(route => `
+                    <div class="route-card" onclick="viewRoute('${route.id}')">
+                        <img src="${route.cover_image}" alt="${route.name}" class="route-card-image"
+                             onerror="this.src='https://via.placeholder.com/400x280/89C4F4/FFFFFF?text=${encodeURIComponent(route.city)}'">
+                        <div class="route-card-content">
+                            <div class="route-card-title">${route.name}</div>
+                            <div class="route-card-info">📍 ${route.city} · ⏰ ${route.days}天 · ${route.price_range}</div>
+                            <div class="route-card-time">收藏于 ${route.favorited_at}</div>
+                            <div class="route-card-actions">
+                                <button class="btn-unfav" onclick="event.stopPropagation(); removeFavorite('${route.id}', this)">取消收藏</button>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+            } catch (e) {
+                console.error('加载收藏失败:', e);
+            }
+        }
+
+        // 加载足迹
+        async function loadFootprints() {
+            try {
+                const resp = await fetch('/api/footprints');
+                const data = await resp.json();
+                const listEl = document.getElementById('footprint-list');
+
+                if (!data.footprints || data.footprints.length === 0) {
+                    listEl.innerHTML = `
+                        <div class="empty-state" style="grid-column: 1/-1;">
+                            <div class="empty-icon">🌍</div>
+                            <p>还没有打卡足迹</p>
+                            <p style="color:#718096; font-size:14px; margin-top:8px;">在路线详情页的景点卡片旁点击「去过」，记录你到过的景点</p>
+                            <p><a href="/" style="color:#3182ce;">去探索路线 →</a></p>
+                        </div>`;
+                    return;
+                }
+
+                listEl.innerHTML = data.footprints.map(fp => `
+                    <div class="footprint-item">
+                        <div class="footprint-attraction">${fp.attraction_name || fp.city}</div>
+                        <div class="footprint-city">📍 ${fp.city}</div>
+                        <div class="footprint-date">${fp.visited_at}</div>
+                    </div>
+                `).join('');
+
+                // 初始化足迹地图
+                initFootprintMap(data.footprints);
+            } catch (e) {
+                console.error('加载足迹失败:', e);
+            }
+        }
+
+        // 初始化足迹地图
+        function initFootprintMap(footprints) {
+            const cityCenters = {
+                '杭州': [30.287459, 120.153576], '成都': [30.659462, 104.065735],
+                '西安': [34.263161, 108.948024], '厦门': [24.490474, 118.11022],
+                '北京': [39.904989, 116.405285], '丽江': [26.872108, 100.233026],
+                '上海': [31.231706, 121.472644], '三亚': [18.252847, 109.512016],
+                '桂林': [25.274215, 110.299174], '青岛': [36.067108, 120.382629],
+                '苏州': [31.299012, 120.585296], '南京': [32.060255, 118.796877],
+                '重庆': [29.563009, 106.551557], '广州': [23.129112, 113.264385],
+                '深圳': [22.543099, 114.057868]
+            };
+
+            if (footprintMap) {
+                footprintMap.remove();
+            }
+
+            footprintMap = L.map('footprint-map').setView([35.0, 108.0], 4);
+            L.tileLayer('https://webrd0{s}.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scale=1&style=8&x={x}&y={y}&z={z}', {
+                subdomains: ['1', '2', '3', '4'],
+                attribution: '&copy; 高德地图',
+                maxZoom: 18
+            }).addTo(footprintMap);
+
+            const bounds = [];
+            footprints.forEach(fp => {
+                // 优先使用景点坐标，否则使用城市中心
+                let coords = null;
+                if (fp.latitude && fp.longitude) {
+                    coords = [fp.latitude, fp.longitude];
+                } else if (cityCenters[fp.city]) {
+                    coords = cityCenters[fp.city];
+                }
+
+                if (coords) {
+                    bounds.push(coords);
+                    const displayName = fp.attraction_name || fp.city;
+                    const icon = L.divIcon({
+                        className: 'custom-div-icon',
+                        html: '<div style="background:#38a169;color:white;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:14px;border:3px solid white;box-shadow:0 2px 8px rgba(0,0,0,0.3);">✓</div>',
+                        iconSize: [28, 28],
+                        iconAnchor: [14, 14]
+                    });
+                    L.marker(coords, { icon: icon })
+                        .addTo(footprintMap)
+                        .bindPopup(`<strong>${displayName}</strong><br>📍 ${fp.city}<br>标记于 ${fp.visited_at}`);
+                }
+            });
+
+            if (bounds.length > 0) {
+                footprintMap.fitBounds(bounds, { padding: [30, 30] });
+            }
+
+            // 修复地图在隐藏tab中的渲染问题
+            setTimeout(() => footprintMap.invalidateSize(), 100);
+        }
+
+        // 加载浏览历史
+        async function loadHistory() {
+            try {
+                const resp = await fetch('/api/history');
+                const data = await resp.json();
+                const container = document.getElementById('history-container');
+
+                if (!data.history || data.history.length === 0) {
+                    container.innerHTML = `
+                        <div class="empty-state">
+                            <div class="empty-icon">🕐</div>
+                            <p>暂无浏览历史</p>
+                            <p><a href="/">去探索路线</a></p>
+                        </div>`;
+                    return;
+                }
+
+                container.innerHTML = data.history.map(route => `
+                    <div class="route-card" onclick="viewRoute('${route.id}')">
+                        <img src="${route.cover_image}" alt="${route.name}" class="route-card-image"
+                             onerror="this.src='https://via.placeholder.com/400x280/89C4F4/FFFFFF?text=${encodeURIComponent(route.city)}'">
+                        <div class="route-card-content">
+                            <div class="route-card-title">${route.name}</div>
+                            <div class="route-card-info">📍 ${route.city} · ⏰ ${route.days}天 · ${route.price_range}</div>
+                            <div class="route-card-time">浏览于 ${route.viewed_at}</div>
+                        </div>
+                    </div>
+                `).join('');
+            } catch (e) {
+                console.error('加载历史失败:', e);
+            }
+        }
+
+        // 取消收藏
+        async function removeFavorite(routeId, btn) {
+            try {
+                const resp = await fetch(`/api/favorite/${routeId}`, { method: 'DELETE' });
+                const data = await resp.json();
+                if (resp.ok) {
+                    const card = btn.closest('.route-card');
+                    card.style.transition = 'opacity 0.3s, transform 0.3s';
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateX(50px)';
+                    setTimeout(() => {
+                        card.remove();
+                        // 更新统计
+                        const countEl = document.getElementById('stat-fav');
+                        countEl.textContent = parseInt(countEl.textContent) - 1;
+                        // 检查是否为空
+                        const container = document.getElementById('favorites-container');
+                        if (!container.querySelector('.route-card')) {
+                            container.innerHTML = `
+                                <div class="empty-state">
+                                    <div class="empty-icon">❤️</div>
+                                    <p>还没有收藏路线</p>
+                                    <p><a href="/">去发现精彩路线</a></p>
+                                </div>`;
+                        }
+                    }, 300);
+                }
+            } catch (e) {
+                console.error('取消收藏失败:', e);
+            }
+        }
+
+        // 清空浏览历史
+        async function clearHistory() {
+            if (!confirm('确定清空所有浏览历史？')) return;
+            try {
+                await fetch('/api/history', { method: 'DELETE' });
+                document.getElementById('history-container').innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-icon">🕐</div>
+                        <p>暂无浏览历史</p>
+                        <p><a href="/">去探索路线</a></p>
+                    </div>`;
+                document.getElementById('stat-history').textContent = '0';
+            } catch (e) {
+                console.error('清空历史失败:', e);
+            }
+        }
+
+        // 查看路线详情
+        function viewRoute(routeId) {
+            window.location.href = `/route/${routeId}`;
+        }
+
+        // 退出登录
+        async function doLogout() {
+            try {
+                await fetch('/api/logout', { method: 'POST' });
+                window.location.href = '/';
+            } catch (e) {
+                console.error('退出失败:', e);
+            }
+        }
+
+        // ============ 下拉菜单 ============
+        function toggleUserDropdown() {
+            const dropdown = document.getElementById('userDropdown');
+            const pill = document.querySelector('.nav-user-pill');
+            const isOpen = dropdown.classList.contains('show');
+
+            if (isOpen) {
+                dropdown.classList.remove('show');
+                pill.classList.remove('open');
+            } else {
+                dropdown.classList.add('show');
+                pill.classList.add('open');
+            }
+        }
+
+        document.addEventListener('click', function(e) {
+            const dropdown = document.getElementById('userDropdown');
+            const pill = document.querySelector('.nav-user-pill');
+            if (!dropdown || !pill) return;
+
+            if (!e.target.closest('#nav-user-area')) {
+                dropdown.classList.remove('show');
+                pill.classList.remove('open');
+            }
+        });
+    </script>
+</body>
+</html>
