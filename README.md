@@ -66,74 +66,6 @@ travel_recommending/
     └── 500.html            # 500 页面
 ```
 
-##  快速开始
-
-### 1. 克隆项目
-
-```bash
-git clone https://github.com/<your-username>/travel_recommending.git
-cd travel_recommending
-```
-
-### 2. 安装依赖
-
-```bash
-pip install -r requirements.txt
-```
-
-### 3. 配置环境变量
-
-在项目根目录创建 `.env` 文件：
-
-```env
-# 高德地图 API Key（用于地图显示和 POI 数据采集）
-AMAP_API_KEY=your_amap_api_key_here
-
-# Flask 配置（可选）
-SECRET_KEY=your-secret-key
-FLASK_ENV=development
-```
-
-> 💡 高德 API Key 可在 [高德开放平台](https://lbs.amap.com/) 免费申请。不配置 Key 时地图功能不可用，但路线浏览和推荐功能正常运行。
-
-### 4. 初始化数据库
-
-```bash
-python scripts/init_database.py
-```
-
-### 5. 启动应用
-
-```bash
-python app.py
-```
-
-访问 [http://localhost:5000](http://localhost:5000) 即可使用。
-
-##  API 文档
-
-### 页面路由
-
-| 方法 | 路径 | 说明 |
-|------|------|------|
-| GET | `/` | 首页 |
-| GET | `/route/<route_id>` | 路线详情页 |
-
-### 数据接口
-
-| 方法 | 路径 | 说明 |
-|------|------|------|
-| GET | `/api/home` | 获取热门路线（按热度排序，最多 9 条） |
-| GET | `/api/cities` | 获取省份/城市列表 |
-| GET | `/api/cities?province=浙江` | 获取指定省份的城市 |
-| POST | `/api/recommend` | 智能推荐路线 |
-| GET | `/api/route/<route_id>` | 获取路线详情 JSON |
-| GET | `/api/export/<route_id>?style=modern_card` | 导出行程图片 |
-| GET | `/api/stats` | 数据统计 |
-| POST | `/api/admin/clear-cache` | 清除服务端缓存 |
-
-
-
 ## 🔧 数据采集
 
 项目提供高德 POI 数据爬取脚本，支持按城市和类型批量采集：
@@ -154,19 +86,6 @@ python scripts/scrape_amap_poi.py --city 杭州 --clear
 
 >  需要在 `.env` 中配置有效的 `AMAP_API_KEY`。
 
-##  数据规模
-
-| 数据类型 | 数量 |
-|---------|------|
-| 旅游城市 | 15 |
-| 景点（Attraction） | 750 |
-| 酒店（Hotel） | 750 |
-| 餐厅（Restaurant） | 750 |
-| 精选路线（Route） | 60 |
-| POI 坐标覆盖率 | 100% |
-| 路线-POI 匹配率 | 100% |
-
-> 每个城市包含 50 个景点、50 家酒店、50 家餐厅和 4 条精选路线，数据来源于高德地图 POI API。
 
 ##  截图预览
 
