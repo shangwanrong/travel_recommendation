@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>智游推荐 - 旅游路线智能推荐</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <!-- 顶部导航栏 -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <span class="logo">🌊 智游推荐</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="/">首页</a></li>
+                <li><a href="/">热门路线</a></li>
+                <li><a href="/">定制行程</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 主内容区 -->
+    <main class="main-content">
+        <!-- 定制表单区域 -->
+        <section class="form-section">
+            <div class="container">
+                <div class="form-card">
+                    <h2>✨ 定制您的专属旅程</h2>
+                    <form id="recommend-form">
+                        <div class="form-row">
+                            <select id="province-select" name="province" required>
+                                <option value="">选择省份</option>
+                            </select>
+                            <select id="city-select" name="city" required disabled>
+                                <option value="">选择城市</option>
+                            </select>
+                            <select id="days-select" name="days" required>
+                                <option value="">旅游天数</option>
+                                <option value="1">1天</option>
+                                <option value="2">2天</option>
+                                <option value="3">3天</option>
+                                <option value="4">4天</option>
+                                <option value="5">5天</option>
+                                <option value="6">6天</option>
+                                <option value="7">7天</option>
+                            </select>
+                            <select id="transport-select" name="transport" required>
+                                <option value="">出行方式</option>
+                                <option value="self-driving">🚗 自驾游</option>
+                                <option value="public-transport">🚇 公共交通</option>
+                            </select>
+                            <button type="submit" class="btn-primary">开始推荐</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- 热门路线展示区 -->
+        <section class="routes-section">
+            <div class="container">
+                <h2 id="section-title">🔥 热门路线推荐</h2>
+                <div id="routes-container" class="routes-grid">
+                    <!-- 路线卡片将通过JavaScript动态加载 -->
+                    <div class="loading">加载中...</div>
+                </div>
+                <button id="back-hot" class="btn-secondary" style="display: none;">返回热门路线</button>
+            </div>
+        </section>
+    </main>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
