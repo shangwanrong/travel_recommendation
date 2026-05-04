@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>智能定制 - 智游推荐</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/customize.css') }}">
+</head>
+<body>
+    <!-- 顶部导航栏 -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <a href="/" style="text-decoration:none;"><span class="logo">智游推荐</span></a>
+            </div>
+            <div class="nav-right">
+                <ul class="nav-menu">
+                    <li><a href="/">首页</a></li>
+                    <li><a href="/#routes-section">热门路线</a></li>
+                    <li><a href="/#form-section">路线筛选</a></li>
+                    <li><a href="/customize" class="nav-highlight">智能定制</a></li>
+                </ul>
+                <!-- 用户区域 -->
+                <div id="nav-auth">
+                    <button class="nav-login-btn" onclick="showLoginModal()">登录 / 注册</button>
+                </div>
+                <div id="nav-user-area" style="display:none;" class="nav-user-area">
+                    <div class="nav-user-pill" onclick="toggleUserDropdown()">
+                        <span class="nav-user-avatar" id="nav-avatar">👤</span>
+                        <span class="nav-user-name" id="nav-username"></span>
+                        <span class="nav-dropdown-arrow">▾</span>
+                    </div>
+                    <div class="nav-dropdown" id="userDropdown">
+                        <a href="/profile" class="nav-dropdown-item"><span>👤</span> 个人中心</a>
+                        <a href="/profile#favorites" class="nav-dropdown-item"><span>❤️</span> 我的收藏</a>
+                        <div class="nav-dropdown-divider"></div>
+                        <a href="#" class="nav-dropdown-item nav-dropdown-logout" onclick="doLogout()"><span>🚪</span> 退出登录</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主内容区 -->
+    <main class="customize-page">
+        <div class="container">
+            <!-- 页面标题 -->
+            <div class="customize-header">
+                <h1>🎯 智能定制您的专属旅程</h1>
+                <p>回答几个小问题，我们将为您量身打造最适合的旅游路线</p>
+            </div>
+
+            <!-- 步骤指示器 -->
+            <div class="step-indicator">
+                <div class="step-item active" data-step="1">
+                    <span class="step-number">1</span>
+                    <span>偏好类型</span>
+                </div>
+                <div class="step-connector"></div>
+                <div class="step-item" data-step="2">
+                    <span class="step-number">2</span>
+                    <span>目的地</span>
+                </div>
+                <div class="step-connector"></div>
+                <div class="step-item" data-step="3">
+                    <span class="step-number">3</span>
+                    <span>行程详情</span>
+                </div>
+                <div class="step-connector"></div>
+                <div class="step-item" data-step="4">
+                    <span class="step-number">4</span>
+                    <span>生成路线</span>
+                </div>
+            </div>
+
+            <!-- 问卷卡片 -->
+            <div class="quiz-card">
+                <!-- 第1步：偏好选择 -->
+                <div class="quiz-step active" id="step-1">
+                    <h3 class="quiz-question">您更喜欢哪种旅行方式？</h3>
+                    <p class="quiz-subtitle">选择最贴近您心意的类型，我们将据此推荐景点</p>
+                    <div class="option-grid">
+                        <div class="option-card" data-value="scenery" onclick="selectOption(this, 'preference')">
+                            <div class="option-icon">🏔️</div>
+                            <div class="option-text">
+                                <h4>自然风光</h4>
+                                <p>名山大川、湖光山色、海滩岛屿</p>
+                            </div>
+                        </div>
+                        <div class="option-card" data-value="historical" onclick="selectOption(this, 'preference')">
+                            <div class="option-icon">🏛️</div>
+                            <div class="option-text">
+                                <h4>历史人文</h4>
+                                <p>博物馆、古迹遗址、红色景区</p>
+                            </div>
+                        </div>
+                        <div class="option-card" data-value="entertainment" onclick="selectOption(this, 'preference')">
+                            <div class="option-icon">🎭</div>
+                            <div class="option-text">
+                                <h4>休闲娱乐</h4>
+                                <p>主题乐园、动物园、影剧院</p>
+                            </div>
+                        </div>
+                        <div class="option-card" data-value="balanced" onclick="selectOption(this, 'preference')">
+                            <div class="option-icon">🌈</div>
+                            <div class="option-text">
+                                <h4>均衡搭配</h4>
+                                <p>风景+人文+娱乐，全面体验</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="margin-top:24px;">
+                        <h3 class="quiz-question" style="font-size:18px;">旅行节奏偏好？</h3>
+                        <div class="option-grid" style="margin-top:12px;">
+                            <div class="option-card" data-value="relaxed" onclick="selectOption(this, 'pace')">
+                                <div class="option-icon">☕</div>
+                                <div class="option-text">
+                                    <h4>悠闲放松</h4>
+                                    <p>每天2-3个景点，不赶路</p>
+                                </div>
+                            </div>
+                            <div class="option-card" data-value="moderate" onclick="selectOption(this, 'pace')">
+                                <div class="option-icon">🚶</div>
+                                <div class="option-text">
+                                    <h4>适中平衡</h4>
+                                    <p>每天3-4个景点，劳逸结合</p>
+                                </div>
+                            </div>
+                            <div class="option-card" data-value="intensive" onclick="selectOption(this, 'pace')">
+                                <div class="option-icon">⚡</div>
+                                <div class="option-text">
+                                    <h4>紧凑高效</h4>
+                                    <p>每天4-5个景点，不浪费一分一秒</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 第2步：选择城市 -->
+                <div class="quiz-step" id="step-2">
+                    <h3 class="quiz-question">选择您想去的城市</h3>
+                    <p class="quiz-subtitle">点击选择一个目的地城市</p>
+                    <div class="city-grid" id="city-grid">
+                        <!-- 由JS动态生成 -->
+                    </div>
+                </div>
+
+                <!-- 第3步：行程详情 -->
+                <div class="quiz-step" id="step-3">
+                    <h3 class="quiz-question">安排您的行程细节</h3>
+                    <p class="quiz-subtitle">设定天数、预算和出行方式</p>
+
+                    <!-- 天数选择 -->
+                    <div style="margin-bottom:28px;">
+                        <h4 style="font-size:15px;font-weight:600;color:#2d3748;margin-bottom:12px;">🗓️ 旅行天数</h4>
+                        <div class="days-selector">
+                            <div class="day-btn" data-value="1" onclick="selectDay(this)">1<span>天</span></div>
+                            <div class="day-btn" data-value="2" onclick="selectDay(this)">2<span>天</span></div>
+                            <div class="day-btn selected" data-value="3" onclick="selectDay(this)">3<span>天</span></div>
+                            <div class="day-btn" data-value="4" onclick="selectDay(this)">4<span>天</span></div>
+                            <div class="day-btn" data-value="5" onclick="selectDay(this)">5<span>天</span></div>
+                            <div class="day-btn" data-value="6" onclick="selectDay(this)">6<span>天</span></div>
+                            <div class="day-btn" data-value="7" onclick="selectDay(this)">7<span>天</span></div>
+                        </div>
+                    </div>
+
+                    <!-- 预算选择 -->
+                    <div style="margin-bottom:28px;">
+                        <h4 style="font-size:15px;font-weight:600;color:#2d3748;margin-bottom:12px;">💰 人均预算（含住宿、门票、餐饮）</h4>
+                        <div class="budget-slider-wrapper">
+                            <div class="budget-display">
+                                ¥<span id="budget-value">3000</span> <span>/ 人</span>
+                            </div>
+                            <input type="range" class="budget-slider" id="budget-slider" 
+                                   min="500" max="10000" step="500" value="3000"
+                                   oninput="updateBudget(this.value)">
+                            <div class="budget-labels">
+                                <span>¥500 经济</span>
+                                <span>¥3000 舒适</span>
+                                <span>¥5000 品质</span>
+                                <span>¥10000 豪华</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 出行方式 -->
+                    <div>
+                        <h4 style="font-size:15px;font-weight:600;color:#2d3748;margin-bottom:12px;">🚗 出行方式</h4>
+                        <div class="transport-grid">
+                            <div class="transport-card" data-value="public-transport" onclick="selectTransport(this)">
+                                <div class="transport-icon">🚇</div>
+                                <div class="transport-name">公共交通</div>
+                                <div class="transport-desc">地铁、公交、打车结合，经济实惠</div>
+                            </div>
+                            <div class="transport-card selected" data-value="self-driving" onclick="selectTransport(this)">
+                                <div class="transport-icon">🚗</div>
+                                <div class="transport-name">自驾出行</div>
+                                <div class="transport-desc">灵活自由，适合多人出行</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 第4步：确认与生成 -->
+                <div class="quiz-step" id="step-4">
+                    <h3 class="quiz-question">确认您的定制偏好</h3>
+                    <p class="quiz-subtitle">检查以下信息，确认后我们将为您生成专属路线</p>
+
+                    <div id="summary-content" style="background:#f7fafc;border-radius:12px;padding:24px;border:1px solid #e2e8f0;">
+                        <!-- 由JS动态生成 -->
+                    </div>
+
+                    <div style="margin-top:20px;padding:16px;background:#fffbeb;border-radius:10px;border:1px solid #fbd38d;">
+                        <p style="font-size:13px;color:#975a16;line-height:1.6;">
+                            💡 系统将根据您的偏好智能规划路线，优先安排附近景点，减少路途奔波。
+                            生成后您还可以自由增删调整景点哦！
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 按钮区域 -->
+                <div class="quiz-buttons">
+                    <button class="btn-prev" id="btn-prev" onclick="prevStep()" style="visibility:hidden;">上一步</button>
+                    <button class="btn-next" id="btn-next" onclick="nextStep()">下一步</button>
+                    <button class="btn-generate" id="btn-generate" onclick="generateRoute()" style="display:none;">✨ 生成专属路线</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 生成路线加载动画 -->
+    <div class="generating-overlay" id="generating-overlay">
+        <div class="generating-spinner"></div>
+        <div class="generating-text">正在为您规划专属路线...</div>
+        <div class="generating-sub" id="generating-sub">分析您的偏好中</div>
+    </div>
+
+    <!-- 登录弹窗（复用首页） -->
+    <div id="login-modal" style="display:none;"></div>
+
+    <script>
+    // ========== 状态管理 ==========
+    const quizState = {
+        currentStep: 1,
+        totalSteps: 4,
+        preference: null,       // scenery/historical/entertainment/balanced
+        pace: null,             // relaxed/moderate/intensive
+        city: null,             // 城市ID
+        cityName: null,         // 城市中文名
+        days: 3,               // 默认3天
+        budget: 3000,          // 默认3000元
+        transport: 'self-driving'  // 默认自驾
+    };
+
+    // 城市数据（从后端获取）
+    let citiesData = [];
+
+    // ========== 初始化 ==========
+    document.addEventListener('DOMContentLoaded', function() {
+        loadCities();
+        checkLoginStatus();
+    });
+
+    async function loadCities() {
+        try {
+            const resp = await fetch('/api/cities');
+            const data = await resp.json();
+            if (Array.isArray(data)) {
+                // API直接返回省份数组
+                citiesData = data;
+                renderCityGrid();
+            } else if (data.provinces) {
+                // API返回 {provinces: [...]} 格式
+                citiesData = data.provinces;
+                renderCityGrid();
+            }
+        } catch(e) {
+            console.error('加载城市数据失败:', e);
+        }
+    }
+
+    function renderCityGrid() {
+        const grid = document.getElementById('city-grid');
+        grid.innerHTML = '';
+        citiesData.forEach(province => {
+            province.cities.forEach(city => {
+                const card = document.createElement('div');
+                card.className = 'city-card';
+                card.dataset.cityId = city.id;
+                card.dataset.cityName = city.name;
+                card.innerHTML = `
+                    <div class="city-name">${city.name}</div>
+                    <div class="city-province">${province.name}</div>
+                `;
+                card.onclick = function() { selectCity(this); };
+                grid.appendChild(card);
+            });
+        });
+    }
+
+    // ========== 选择逻辑 ==========
+    function selectOption(el, field) {
+        // 同组取消其他选中
+        const parent = el.parentElement;
+        parent.querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
+        el.classList.add('selected');
+        quizState[field] = el.dataset.value;
+    }
+
+    function selectCity(el) {
+        document.querySelectorAll('.city-card').forEach(c => c.classList.remove('selected'));
+        el.classList.add('selected');
+        quizState.city = el.dataset.cityId;
+        quizState.cityName = el.dataset.cityName;
+    }
+
+    function selectDay(el) {
+        document.querySelectorAll('.day-btn').forEach(c => c.classList.remove('selected'));
+        el.classList.add('selected');
+        quizState.days = parseInt(el.dataset.value);
+    }
+
+    function selectTransport(el) {
+        document.querySelectorAll('.transport-card').forEach(c => c.classList.remove('selected'));
+        el.classList.add('selected');
+        quizState.transport = el.dataset.value;
+    }
+
+    function updateBudget(val) {
+        document.getElementById('budget-value').textContent = parseInt(val).toLocaleString();
+        quizState.budget = parseInt(val);
+    }
+
+    // ========== 步骤切换 ==========
+    function nextStep() {
+        // 验证当前步骤
+        if (!validateStep(quizState.currentStep)) return;
+
+        if (quizState.currentStep < quizState.totalSteps) {
+            quizState.currentStep++;
+            updateStepUI();
+            
+            // 到最后一步时渲染摘要
+            if (quizState.currentStep === quizState.totalSteps) {
+                renderSummary();
+            }
+        }
+    }
+
+    function prevStep() {
+        if (quizState.currentStep > 1) {
+            quizState.currentStep--;
+            updateStepUI();
+        }
+    }
+
+    function validateStep(step) {
+        switch(step) {
+            case 1:
+                if (!quizState.preference) {
+                    showToast('请选择您喜欢的旅行类型');
+                    return false;
+                }
+                if (!quizState.pace) {
+                    showToast('请选择旅行节奏偏好');
+                    return false;
+                }
+                return true;
+            case 2:
+                if (!quizState.city) {
+                    showToast('请选择一个目的地城市');
+                    return false;
+                }
+                return true;
+            case 3:
+                // 天数和预算已有默认值，无需额外验证
+                return true;
+            default:
+                return true;
+        }
+    }
+
+    function updateStepUI() {
+        const step = quizState.currentStep;
+
+        // 更新步骤指示器
+        document.querySelectorAll('.step-item').forEach((item, idx) => {
+            const stepNum = idx + 1;
+            item.classList.remove('active', 'completed');
+            if (stepNum === step) item.classList.add('active');
+            else if (stepNum < step) item.classList.add('completed');
+        });
+
+        // 更新连接线
+        document.querySelectorAll('.step-connector').forEach((conn, idx) => {
+            conn.classList.toggle('completed', idx + 1 < step);
+        });
+
+        // 切换问卷步骤
+        document.querySelectorAll('.quiz-step').forEach(s => s.classList.remove('active'));
+        document.getElementById(`step-${step}`).classList.add('active');
+
+        // 更新按钮
+        const btnPrev = document.getElementById('btn-prev');
+        const btnNext = document.getElementById('btn-next');
+        const btnGenerate = document.getElementById('btn-generate');
+
+        btnPrev.style.visibility = step > 1 ? 'visible' : 'hidden';
+        
+        if (step === quizState.totalSteps) {
+            btnNext.style.display = 'none';
+            btnGenerate.style.display = 'block';
+        } else {
+            btnNext.style.display = 'block';
+            btnGenerate.style.display = 'none';
+        }
+    }
+
+    function renderSummary() {
+        const prefMap = {
+            'scenery': '🏔️ 自然风光',
+            'historical': '🏛️ 历史人文',
+            'entertainment': '🎭 休闲娱乐',
+            'balanced': '🌈 均衡搭配'
+        };
+        const paceMap = {
+            'relaxed': '☕ 悠闲放松',
+            'moderate': '🚶 适中平衡',
+            'intensive': '⚡ 紧凑高效'
+        };
+        const transportMap = {
+            'self-driving': '🚗 自驾出行',
+            'public-transport': '🚇 公共交通'
+        };
+
+        const summary = document.getElementById('summary-content');
+        summary.innerHTML = `
+            <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;">
+                <div style="padding:12px;background:white;border-radius:8px;border:1px solid #e2e8f0;">
+                    <div style="font-size:12px;color:#a0aec0;margin-bottom:4px;">偏好类型</div>
+                    <div style="font-size:16px;font-weight:600;color:#2d3748;">${prefMap[quizState.preference] || '未选择'}</div>
+                </div>
+                <div style="padding:12px;background:white;border-radius:8px;border:1px solid #e2e8f0;">
+                    <div style="font-size:12px;color:#a0aec0;margin-bottom:4px;">旅行节奏</div>
+                    <div style="font-size:16px;font-weight:600;color:#2d3748;">${paceMap[quizState.pace] || '未选择'}</div>
+                </div>
+                <div style="padding:12px;background:white;border-radius:8px;border:1px solid #e2e8f0;">
+                    <div style="font-size:12px;color:#a0aec0;margin-bottom:4px;">目的地</div>
+                    <div style="font-size:16px;font-weight:600;color:#2d3748;">${quizState.cityName || '未选择'}</div>
+                </div>
+                <div style="padding:12px;background:white;border-radius:8px;border:1px solid #e2e8f0;">
+                    <div style="font-size:12px;color:#a0aec0;margin-bottom:4px;">旅行天数</div>
+                    <div style="font-size:16px;font-weight:600;color:#2d3748;">${quizState.days}天</div>
+                </div>
+                <div style="padding:12px;background:white;border-radius:8px;border:1px solid #e2e8f0;">
+                    <div style="font-size:12px;color:#a0aec0;margin-bottom:4px;">人均预算</div>
+                    <div style="font-size:16px;font-weight:600;color:#2d3748;">¥${quizState.budget.toLocaleString()}</div>
+                </div>
+                <div style="padding:12px;background:white;border-radius:8px;border:1px solid #e2e8f0;">
+                    <div style="font-size:12px;color:#a0aec0;margin-bottom:4px;">出行方式</div>
+                    <div style="font-size:16px;font-weight:600;color:#2d3748;">${transportMap[quizState.transport] || '未选择'}</div>
+                </div>
+            </div>
+        `;
+    }
+
+    // ========== 生成路线 ==========
+    async function generateRoute() {
+        if (!validateStep(quizState.currentStep)) return;
+
+        const overlay = document.getElementById('generating-overlay');
+        const subText = document.getElementById('generating-sub');
+        overlay.classList.add('active');
+
+        // 动态提示文字
+        const tips = [
+            '分析您的偏好中...',
+            '筛选最适合的景点...',
+            '优化游览路线...',
+            '安排住宿和餐饮...',
+            '计算预算分配...',
+            '即将完成！'
+        ];
+        let tipIdx = 0;
+        const tipTimer = setInterval(() => {
+            tipIdx = (tipIdx + 1) % tips.length;
+            subText.textContent = tips[tipIdx];
+        }, 2000);
+
+        try {
+            const resp = await fetch('/api/customize/generate', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    preference: quizState.preference,
+                    pace: quizState.pace,
+                    city_id: quizState.city,
+                    city_name: quizState.cityName,
+                    days: quizState.days,
+                    budget: quizState.budget,
+                    transport: quizState.transport
+                })
+            });
+
+            clearInterval(tipTimer);
+            overlay.classList.remove('active');
+
+            if (resp.ok) {
+                const data = await resp.json();
+                if (data.routes && data.routes.length > 0) {
+                    // 跳转到路线结果页面
+                    window.location.href = `/customize/results?session=${data.session_id}`;
+                } else {
+                    showToast('生成路线失败，请调整条件后重试');
+                }
+            } else {
+                const err = await resp.json();
+                showToast(err.message || '生成路线失败，请稍后重试');
+            }
+        } catch(e) {
+            clearInterval(tipTimer);
+            overlay.classList.remove('active');
+            showToast('网络错误，请检查网络后重试');
+            console.error('生成路线失败:', e);
+        }
+    }
+
+    // ========== 工具函数 ==========
+    function showToast(msg) {
+        let toast = document.getElementById('toast-msg');
+        if (!toast) {
+            toast = document.createElement('div');
+            toast.id = 'toast-msg';
+            toast.style.cssText = 'position:fixed;top:80px;left:50%;transform:translateX(-50%);background:#2c5282;color:white;padding:12px 24px;border-radius:10px;font-size:14px;z-index:9999;box-shadow:0 4px 15px rgba(44,82,130,0.3);transition:opacity 0.3s;';
+            document.body.appendChild(toast);
+        }
+        toast.textContent = msg;
+        toast.style.opacity = '1';
+        setTimeout(() => { toast.style.opacity = '0'; }, 2500);
+    }
+
+    // ========== 用户登录状态 ==========
+    async function checkLoginStatus() {
+        try {
+            const resp = await fetch('/api/user/info');
+            if (resp.ok) {
+                const data = await resp.json();
+                if (data.logged_in) {
+                    document.getElementById('nav-auth').style.display = 'none';
+                    document.getElementById('nav-user-area').style.display = 'flex';
+                    document.getElementById('nav-username').textContent = data.username;
+                }
+            }
+        } catch(e) {
+            // 忽略
+        }
+    }
+
+    function toggleUserDropdown() {
+        const dd = document.getElementById('userDropdown');
+        dd.style.display = dd.style.display === 'block' ? 'none' : 'block';
+    }
+
+    async function doLogout() {
+        try {
+            await fetch('/api/logout', { method: 'POST' });
+            location.reload();
+        } catch(e) { console.error(e); }
+    }
+
+    // 点击外部关闭下拉
+    document.addEventListener('click', function(e) {
+        const dd = document.getElementById('userDropdown');
+        if (dd && !e.target.closest('.nav-user-area')) {
+            dd.style.display = 'none';
+        }
+    });
+    </script>
+</body>
+</html>

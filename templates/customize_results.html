@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>定制路线 - 智游推荐</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/customize.css') }}">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <style>
+        .results-page { padding-top: 80px; min-height: 100vh; background: #f0f4f8; }
+
+        /* 路线选项卡 */
+        .route-tabs { display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
+        .route-tab {
+            padding: 10px 20px; border-radius: 10px; border: 2px solid #e2e8f0;
+            background: white; cursor: pointer; font-size: 14px; font-weight: 600;
+            color: #4a5568; transition: all 0.25s;
+        }
+        .route-tab:hover { border-color: #90cdf4; background: #ebf8ff; }
+        .route-tab.active {
+            border-color: #2c5282; background: #2c5282; color: white;
+            box-shadow: 0 4px 12px rgba(44,82,130,0.3);
+        }
+        .route-tab .tab-cost { font-size: 12px; font-weight: 400; opacity: 0.8; }
+
+        /* 主布局 */
+        .route-layout { display: flex; gap: 20px; height: calc(100vh - 200px); min-height: 500px; }
+        .route-map-panel { flex: 0 0 60%; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+        .route-map-panel #map { width: 100%; height: 100%; }
+        .route-detail-panel { flex: 0 0 38%; overflow-y: auto; padding-right: 8px; }
+
+        /* 路线信息卡 */
+        .route-info-card {
+            background: white; border-radius: 14px; padding: 20px;
+            margin-bottom: 16px; box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            border: 1px solid #e2e8f0;
+        }
+        .route-info-card h3 { font-size: 18px; color: #1a365d; margin-bottom: 8px; }
+        .route-meta { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 12px; }
+        .route-meta span { font-size: 13px; color: #718096; }
+        .route-desc { font-size: 14px; color: #4a5568; line-height: 1.6; }
+
+        /* 每日行程卡 */
+        .day-card {
+            background: white; border-radius: 14px; padding: 18px;
+            margin-bottom: 16px; box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            border: 1px solid #e2e8f0;
+        }
+        .day-header {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-bottom: 14px; padding-bottom: 10px; border-bottom: 2px solid #edf2f7;
+        }
+        .day-title { font-size: 16px; font-weight: 700; color: #2c5282; }
+        .day-cost { font-size: 13px; color: #e53e3e; font-weight: 600; }
+
+        /* 景点时间线 */
+        .timeline { position: relative; padding-left: 28px; }
+        .timeline::before {
+            content: ''; position: absolute; left: 8px; top: 0; bottom: 0;
+            width: 2px; background: #e2e8f0;
+        }
+        .timeline-item {
+            position: relative; padding-bottom: 16px;
+            animation: fadeInUp 0.3s ease;
+        }
+        .timeline-dot {
+            position: absolute; left: -24px; top: 4px;
+            width: 14px; height: 14px; border-radius: 50%;
+            border: 2px solid #2c5282; background: white; z-index: 1;
+        }
+        .timeline-item.scenery .timeline-dot { border-color: #48bb78; background: #f0fff4; }
+        .timeline-item.historical .timeline-dot { border-color: #ed8936; background: #fffbeb; }
+        .timeline-item.entertainment .timeline-dot { border-color: #9f7aea; background: #faf5ff; }
+        .timeline-item.religious .timeline-dot { border-color: #e53e3e; background: #fff5f5; }
+        .timeline-item.hotel .timeline-dot { border-color: #4299e1; background: #ebf8ff; }
+        .timeline-item.restaurant .timeline-dot { border-color: #ecc94b; background: #fffff0; }
+        .timeline-item.transport .timeline-dot { border-color: #a0aec0; background: #f7fafc; }
+
+        .item-header { display: flex; justify-content: space-between; align-items: flex-start; }
+        .item-name { font-size: 14px; font-weight: 600; color: #2d3748; }
+        .item-duration { font-size: 12px; color: #718096; white-space: nowrap; }
+        .item-meta { font-size: 12px; color: #a0aec0; margin-top: 2px; }
+        .item-actions { display: flex; gap: 6px; margin-top: 6px; }
+        .item-btn {
+            font-size: 11px; padding: 2px 8px; border-radius: 4px;
+            border: 1px solid #e2e8f0; background: #f7fafc; color: #4a5568;
+            cursor: pointer; transition: all 0.2s;
+        }
+        .item-btn:hover { background: #edf2f7; }
+        .item-btn.btn-delete { color: #e53e3e; border-color: #fed7d7; }
+        .item-btn.btn-delete:hover { background: #fff5f5; }
+        .item-btn.btn-replace { color: #3182ce; border-color: #bee3f8; }
+        .item-btn.btn-replace:hover { background: #ebf8ff; }
+
+        /* 添加景点按钮 */
+        .add-item-btn {
+            display: flex; align-items: center; gap: 6px;
+            padding: 8px 14px; border-radius: 8px;
+            border: 2px dashed #e2e8f0; background: #fafbfc;
+            color: #718096; font-size: 13px; cursor: pointer;
+            transition: all 0.25s; width: 100%;
+            justify-content: center; margin-top: 8px;
+        }
+        .add-item-btn:hover { border-color: #90cdf4; color: #2c5282; background: #ebf8ff; }
+
+        /* 住宿和餐饮卡片 */
+        .aux-item {
+            display: flex; align-items: center; gap: 10px;
+            padding: 8px 12px; border-radius: 8px; background: #f7fafc;
+            margin-bottom: 8px; font-size: 13px;
+        }
+        .aux-icon { font-size: 18px; }
+        .aux-name { font-weight: 600; color: #2d3748; }
+        .aux-price { color: #e53e3e; font-weight: 600; margin-left: auto; }
+
+        /* 交通信息 */
+        .transport-segment {
+            display: flex; align-items: center; gap: 8px;
+            padding: 6px 12px; border-radius: 6px; background: #f7fafc;
+            margin: 4px 0; font-size: 12px; color: #718096;
+        }
+        .transport-segment .mode-icon { font-size: 14px; }
+
+        /* 底部操作栏 */
+        .bottom-actions {
+            position: sticky; bottom: 0; background: white;
+            padding: 16px 0; border-top: 1px solid #e2e8f0;
+            display: flex; gap: 12px; justify-content: center;
+            margin-top: 20px;
+        }
+        .btn-save {
+            padding: 12px 32px; border-radius: 10px; border: none;
+            background: linear-gradient(135deg, #48bb78, #38a169); color: white;
+            font-size: 15px; font-weight: 600; cursor: pointer;
+            transition: all 0.25s;
+        }
+        .btn-save:hover { box-shadow: 0 4px 12px rgba(72,187,120,0.4); transform: translateY(-1px); }
+        .btn-back {
+            padding: 12px 24px; border-radius: 10px;
+            border: 2px solid #e2e8f0; background: white; color: #4a5568;
+            font-size: 15px; font-weight: 600; cursor: pointer;
+        }
+        .btn-back:hover { background: #f7fafc; }
+        .btn-optimize {
+            padding: 12px 24px; border-radius: 10px; border: none;
+            background: linear-gradient(135deg, #4299e1, #3182ce); color: white;
+            font-size: 15px; font-weight: 600; cursor: pointer;
+        }
+        .btn-optimize:hover { box-shadow: 0 4px 12px rgba(66,153,225,0.4); }
+        .btn-export {
+            padding: 12px 24px; border-radius: 10px; border: none;
+            background: linear-gradient(135deg, #ed8936, #dd6b20); color: white;
+            font-size: 15px; font-weight: 600; cursor: pointer;
+            transition: all 0.25s;
+        }
+        .btn-export:hover { box-shadow: 0 4px 12px rgba(237,137,54,0.4); transform: translateY(-1px); }
+
+        /* 导出样式选择弹窗 */
+        .export-modal {
+            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.5); z-index: 9999;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .export-modal-content {
+            background: white; border-radius: 16px; padding: 28px;
+            max-width: 480px; width: 90%; box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+        }
+        .export-modal-content h3 { font-size: 18px; color: #1a365d; margin-bottom: 18px; text-align: center; }
+        .export-style-options { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
+        .export-style-option {
+            display: flex; align-items: center; gap: 12px; padding: 14px 16px;
+            border-radius: 12px; border: 2px solid #e2e8f0; cursor: pointer;
+            transition: all 0.2s; background: #f7fafc;
+        }
+        .export-style-option:hover { border-color: #90cdf4; background: #ebf8ff; }
+        .export-style-option.selected { border-color: #2c5282; background: #ebf8ff; }
+        .export-style-icon { font-size: 28px; }
+        .export-style-info { flex: 1; }
+        .export-style-name { font-weight: 600; color: #2d3748; font-size: 14px; }
+        .export-style-desc { font-size: 12px; color: #718096; margin-top: 2px; }
+        .export-modal-actions { display: flex; gap: 10px; justify-content: center; }
+        .export-modal-actions button {
+            padding: 10px 28px; border-radius: 10px; font-size: 14px;
+            font-weight: 600; cursor: pointer; border: none;
+        }
+        .export-modal-cancel { background: #edf2f7; color: #4a5568; }
+        .export-modal-cancel:hover { background: #e2e8f0; }
+        .export-modal-confirm { background: linear-gradient(135deg, #ed8936, #dd6b20); color: white; }
+        .export-modal-confirm:hover { box-shadow: 0 4px 12px rgba(237,137,54,0.4); }
+
+        /* 响应式 */
+        @media (max-width: 900px) {
+            .route-layout { flex-direction: column; height: auto; }
+            .route-map-panel { flex: none; height: 400px; }
+            .route-detail-panel { flex: none; }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <a href="/" style="text-decoration:none;"><span class="logo">智游推荐</span></a>
+            </div>
+            <div class="nav-right">
+                <ul class="nav-menu">
+                    <li><a href="/">首页</a></li>
+                    <li><a href="/customize" class="nav-highlight">智能定制</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="results-page">
+        <div class="container">
+            <!-- 路线选项卡 -->
+            <div class="route-tabs" id="route-tabs"></div>
+
+            <!-- 主布局 -->
+            <div class="route-layout">
+                <!-- 地图 -->
+                <div class="route-map-panel">
+                    <div id="map"></div>
+                </div>
+
+                <!-- 右侧详情 -->
+                <div class="route-detail-panel" id="route-detail"></div>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+    // ========== 数据 ==========
+    const routesData = {{ routes | tojson }};
+    const sessionId = '{{ session_id }}';
+    const amapApiKey = '{{ amap_api_key }}';
+    let currentRouteIdx = 0;
+    let map = null;
+    let markersLayer = null;
+    let linesLayer = null;
+
+    // ========== 初始化 ==========
+    document.addEventListener('DOMContentLoaded', function() {
+        initMap();
+        renderTabs();
+        if (routesData.length > 0) {
+            selectRoute(0);
+        }
+    });
+
+    function initMap() {
+        map = L.map('map', { zoomControl: true }).setView([30.25, 120.15], 11);
+        L.tileLayer('https://webrd0{s}.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scale=1&style=8&x={x}&y={y}&z={z}', {
+            subdomains: ['1', '2', '3', '4'],
+            attribution: '&copy; AutoNavi',
+            maxZoom: 18
+        }).addTo(map);
+        markersLayer = L.layerGroup().addTo(map);
+        linesLayer = L.layerGroup().addTo(map);
+    }
+
+    // ========== 选项卡 ==========
+    function renderTabs() {
+        const tabs = document.getElementById('route-tabs');
+        tabs.innerHTML = '';
+        routesData.forEach((route, idx) => {
+            const tab = document.createElement('div');
+            tab.className = `route-tab ${idx === currentRouteIdx ? 'active' : ''}`;
+            tab.innerHTML = `${route.name}<div class="tab-cost">~${route.total_cost}元</div>`;
+            tab.onclick = () => selectRoute(idx);
+            tabs.appendChild(tab);
+        });
+    }
+
+    function selectRoute(idx) {
+        currentRouteIdx = idx;
+        renderTabs();
+        renderRouteDetail(routesData[idx]);
+        renderMap(routesData[idx]);
+    }
+
+    // ========== 地图渲染 ==========
+    function renderMap(route) {
+        markersLayer.clearLayers();
+        linesLayer.clearLayers();
+
+        const allPoints = [];
+        const catColors = {
+            scenery: '#48bb78', historical: '#ed8936', entertainment: '#9f7aea',
+            religious: '#e53e3e', shopping: '#ecc94b', leisure: '#4299e1', other: '#a0aec0'
+        };
+
+        route.itinerary.forEach((dayPlan, dayIdx) => {
+            const dayPoints = [];
+
+            // 景点标记
+            (dayPlan.attractions || []).forEach((a, aIdx) => {
+                if (a.latitude && a.longitude) {
+                    const color = catColors[a.category] || catColors.other;
+                    const marker = L.circleMarker([a.latitude, a.longitude], {
+                        radius: 8, fillColor: color, color: '#fff',
+                        weight: 2, fillOpacity: 0.9
+                    }).bindPopup(`<b>${a.name}</b><br>${a.suggested_duration}分钟 | ${a.category || '景点'}<br>门票: ${a.ticket_price || 0}元`);
+                    marker.addTo(markersLayer);
+                    dayPoints.push([a.latitude, a.longitude]);
+                }
+            });
+
+            // 住宿标记
+            if (dayPlan.hotel && dayPlan.hotel.latitude) {
+                const hMarker = L.marker([dayPlan.hotel.latitude, dayPlan.hotel.longitude], {
+                    icon: L.divIcon({
+                        className: '',
+                        html: '<div style="background:#4299e1;color:white;padding:2px 8px;border-radius:4px;font-size:12px;font-weight:600;white-space:nowrap;">🏨 ' + dayPlan.hotel.name + '</div>',
+                        iconSize: [120, 24], iconAnchor: [60, 12]
+                    })
+                }).addTo(markersLayer);
+                dayPoints.push([dayPlan.hotel.latitude, dayPlan.hotel.longitude]);
+            }
+
+            // 画路线连线
+            if (dayPoints.length > 1) {
+                const lineColors = ['#2c5282', '#e53e3e', '#38a169'];
+                const polyline = L.polyline(dayPoints, {
+                    color: lineColors[dayIdx % 3],
+                    weight: 3, opacity: 0.7, dashArray: '8, 4'
+                }).addTo(linesLayer);
+            }
+
+            allPoints.push(...dayPoints);
+        });
+
+        // 适配视野
+        if (allPoints.length > 0) {
+            const bounds = L.latLngBounds(allPoints);
+            map.fitBounds(bounds, { padding: [40, 40] });
+        }
+    }
+
+    // ========== 路线详情渲染 ==========
+    function renderRouteDetail(route) {
+        const panel = document.getElementById('route-detail');
+        let html = '';
+
+        // 路线信息卡
+        html += `
+        <div class="route-info-card">
+            <h3>${route.name}</h3>
+            <div class="route-meta">
+                <span>📅 ${route.days}天</span>
+                <span>💰 ~${route.total_cost}元</span>
+                <span>🚗 ${route.transport_mode === 'self-driving' ? '自驾' : '公共交通'}</span>
+            </div>
+            <div class="route-desc">${route.description}</div>
+        </div>`;
+
+        // 每日行程
+        route.itinerary.forEach((dayPlan) => {
+            const day = dayPlan.day;
+            html += `<div class="day-card">`;
+            html += `<div class="day-header">
+                <div class="day-title">📅 第${day}天</div>
+                <div class="day-cost">~${dayPlan.estimated_cost || 0}元</div>
+            </div>`;
+
+            html += `<div class="timeline">`;
+
+            // 景点
+            (dayPlan.attractions || []).forEach((a, idx) => {
+                const catClass = a.category || 'other';
+                const catNames = { scenery: '自然风光', historical: '历史人文', entertainment: '休闲娱乐', religious: '宗教文化', shopping: '购物', leisure: '休闲' };
+                html += `
+                <div class="timeline-item ${catClass}" data-day="${day}" data-idx="${idx}">
+                    <div class="timeline-dot"></div>
+                    <div class="item-header">
+                        <div class="item-name">${a.name}</div>
+                        <div class="item-duration">${formatDuration(a.suggested_duration)}</div>
+                    </div>
+                    <div class="item-meta">${catNames[a.category] || '景点'} | 门票: ${a.ticket_price || 0}元 | ⭐${a.rating || '-'}</div>
+                    <div class="item-actions">
+                        <button class="item-btn btn-replace" onclick="replaceItem(${day}, ${idx})">替换</button>
+                        <button class="item-btn btn-delete" onclick="deleteItem(${day}, ${idx})">删除</button>
+                    </div>
+                </div>`;
+
+                // 交通段
+                if (dayPlan.transport && dayPlan.transport.segments && idx < dayPlan.transport.segments.length) {
+                    const seg = dayPlan.transport.segments[idx];
+                    const modeIcon = seg.mode === 'driving' ? '🚗' : '🚇';
+                    html += `
+                    <div class="timeline-item transport">
+                        <div class="timeline-dot"></div>
+                        <div class="transport-segment">
+                            <span class="mode-icon">${modeIcon}</span>
+                            <span>${seg.distance}km | ~${seg.time}分钟</span>
+                        </div>
+                    </div>`;
+                }
+            });
+
+            html += `</div>`; // .timeline
+
+            // 添加景点按钮
+            html += `<button class="add-item-btn" onclick="addItem(${day})">+ 添加景点</button>`;
+
+            // 住宿
+            if (dayPlan.hotel) {
+                html += `
+                <div style="margin-top:12px;">
+                    <div class="aux-item hotel">
+                        <span class="aux-icon">🏨</span>
+                        <span class="aux-name">${dayPlan.hotel.name}</span>
+                        <span class="aux-price">${dayPlan.hotel.price_night || '-'}元/晚</span>
+                    </div>
+                </div>`;
+            }
+
+            // 餐饮
+            const meals = dayPlan.meals || {};
+            if (meals.lunch) {
+                html += `<div class="aux-item restaurant"><span class="aux-icon">🍜</span><span class="aux-name">午餐: ${meals.lunch.name}</span><span class="aux-price">${meals.lunch.avg_price || '-'}元</span></div>`;
+            }
+            if (meals.dinner) {
+                html += `<div class="aux-item restaurant"><span class="aux-icon">🍽️</span><span class="aux-name">晚餐: ${meals.dinner.name}</span><span class="aux-price">${meals.dinner.avg_price || '-'}元</span></div>`;
+            }
+
+            html += `</div>`; // .day-card
+        });
+
+        // 底部操作
+        html += `
+        <div class="bottom-actions">
+            <button class="btn-back" onclick="location.href='/customize'">重新定制</button>
+            <button class="btn-optimize" onclick="optimizeRoute()">🔄 优化路线</button>
+            <button class="btn-export" onclick="exportRoute()">📥 导出图片</button>
+            <button class="btn-save" onclick="saveRoute()">💾 保存路线</button>
+        </div>`;
+
+        panel.innerHTML = html;
+    }
+
+    function formatDuration(min) {
+        if (!min) return '';
+        const h = Math.floor(min / 60);
+        const m = min % 60;
+        if (h > 0 && m > 0) return `${h}h${m}m`;
+        if (h > 0) return `${h}h`;
+        return `${m}m`;
+    }
+
+    // ========== 编辑功能 ==========
+    function deleteItem(day, idx) {
+        const route = routesData[currentRouteIdx];
+        const dayPlan = route.itinerary.find(d => d.day === day);
+        if (!dayPlan) return;
+
+        const name = dayPlan.attractions[idx].name;
+        if (!confirm(`确定删除「${name}」吗？`)) return;
+
+        dayPlan.attractions.splice(idx, 1);
+
+        // 更新交通段
+        if (dayPlan.transport) {
+            dayPlan.transport = recalcTransport(dayPlan.attractions, route.transport_mode);
+        }
+
+        // 更新费用
+        dayPlan.estimated_cost = recalcDayCost(dayPlan, route.transport_mode);
+        route.total_cost = route.itinerary.reduce((sum, d) => sum + (d.estimated_cost || 0), 0);
+
+        renderRouteDetail(route);
+        renderMap(route);
+        renderTabs();
+    }
+
+    function addItem(day) {
+        const route = routesData[currentRouteIdx];
+        const dayPlan = route.itinerary.find(d => d.day === day);
+        if (!dayPlan) return;
+
+        // 获取已有景点ID列表
+        const existIds = route.itinerary.flatMap(d => (d.attractions || []).map(a => a.id)).join(',');
+
+        // 弹出选择器
+        const url = `/api/poi/suggestions?city=${encodeURIComponent(route.city)}&type=attraction&exclude_ids=${existIds}`;
+        fetch(url).then(r => r.json()).then(data => {
+            if (!data.pois || data.pois.length === 0) {
+                alert('没有更多可选景点了');
+                return;
+            }
+            showPoiPicker(data.pois, (selected) => {
+                dayPlan.attractions.push(selected);
+
+                // 更新交通段
+                if (dayPlan.transport) {
+                    dayPlan.transport = recalcTransport(dayPlan.attractions, route.transport_mode);
+                }
+                dayPlan.estimated_cost = recalcDayCost(dayPlan, route.transport_mode);
+                route.total_cost = route.itinerary.reduce((sum, d) => sum + (d.estimated_cost || 0), 0);
+
+                renderRouteDetail(route);
+                renderMap(route);
+                renderTabs();
+            });
+        });
+    }
+
+    function replaceItem(day, idx) {
+        const route = routesData[currentRouteIdx];
+        const dayPlan = route.itinerary.find(d => d.day === day);
+        if (!dayPlan) return;
+
+        const oldItem = dayPlan.attractions[idx];
+        const existIds = route.itinerary.flatMap(d => (d.attractions || []).map(a => a.id)).join(',');
+
+        const url = `/api/poi/suggestions?city=${encodeURIComponent(route.city)}&category=${oldItem.category}&type=attraction&exclude_ids=${existIds}`;
+        fetch(url).then(r => r.json()).then(data => {
+            if (!data.pois || data.pois.length === 0) {
+                alert('没有可替换的同类景点了');
+                return;
+            }
+            showPoiPicker(data.pois, (selected) => {
+                dayPlan.attractions[idx] = selected;
+
+                if (dayPlan.transport) {
+                    dayPlan.transport = recalcTransport(dayPlan.attractions, route.transport_mode);
+                }
+                dayPlan.estimated_cost = recalcDayCost(dayPlan, route.transport_mode);
+                route.total_cost = route.itinerary.reduce((sum, d) => sum + (d.estimated_cost || 0), 0);
+
+                renderRouteDetail(route);
+                renderMap(route);
+                renderTabs();
+            });
+        });
+    }
+
+    function showPoiPicker(pois, callback) {
+        // 简单的选择器弹窗
+        const overlay = document.createElement('div');
+        overlay.style.cssText = 'position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.5);z-index:3000;display:flex;justify-content:center;align-items:center;';
+
+        const modal = document.createElement('div');
+        modal.style.cssText = 'background:white;border-radius:16px;padding:24px;max-width:500px;width:90%;max-height:70vh;overflow-y:auto;';
+
+        let html = '<h3 style="margin-bottom:16px;color:#1a365d;">选择景点</h3>';
+        pois.forEach(p => {
+            html += `
+            <div style="padding:12px;border:1px solid #e2e8f0;border-radius:8px;margin-bottom:8px;cursor:pointer;transition:all 0.2s;" 
+                 onmouseover="this.style.background='#ebf8ff'" onmouseout="this.style.background='white'"
+                 data-poi-id="${p.id}">
+                <div style="font-weight:600;color:#2d3748;">${p.name}</div>
+                <div style="font-size:12px;color:#718096;">${p.category || ''} | ⭐${p.rating || '-'} | ${p.suggested_duration || '-'}分钟 | ${p.ticket_price || 0}元</div>
+                <div style="font-size:12px;color:#a0aec0;">${p.address || ''}</div>
+            </div>`;
+        });
+        html += '<button onclick="this.closest(\'div[style]\').remove()" style="margin-top:12px;padding:8px 20px;border-radius:8px;border:1px solid #e2e8f0;background:#f7fafc;cursor:pointer;">取消</button>';
+
+        modal.innerHTML = html;
+        overlay.appendChild(modal);
+        document.body.appendChild(overlay);
+
+        // 点击景点
+        modal.querySelectorAll('[data-poi-id]').forEach(el => {
+            el.onclick = () => {
+                const poiId = parseInt(el.dataset.poiId);
+                const poi = pois.find(p => p.id === poiId);
+                if (poi) callback(poi);
+                overlay.remove();
+            };
+        });
+
+        // 点击背景关闭
+        overlay.onclick = (e) => { if (e.target === overlay) overlay.remove(); };
+    }
+
+    // ========== 路线优化 ==========
+    async function optimizeRoute() {
+        const route = routesData[currentRouteIdx];
+
+        for (const dayPlan of route.itinerary) {
+            if (!dayPlan.attractions || dayPlan.attractions.length < 3) continue;
+
+            try {
+                const resp = await fetch('/api/customize/optimize', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ day_pois: dayPlan.attractions })
+                });
+                const data = await resp.json();
+                if (data.optimized_order) {
+                    dayPlan.attractions = data.optimized_order;
+                    dayPlan.transport = recalcTransport(dayPlan.attractions, route.transport_mode);
+                    dayPlan.estimated_cost = recalcDayCost(dayPlan, route.transport_mode);
+                }
+            } catch(e) {
+                console.error('优化失败:', e);
+            }
+        }
+
+        route.total_cost = route.itinerary.reduce((sum, d) => sum + (d.estimated_cost || 0), 0);
+        renderRouteDetail(route);
+        renderMap(route);
+        showToast('路线已优化！');
+    }
+
+    // ========== 保存路线 ==========
+    async function saveRoute() {
+        const route = routesData[currentRouteIdx];
+        if (!route) return;
+
+        // 检查登录状态
+        try {
+            const infoResp = await fetch('/api/user/info');
+            const infoData = await infoResp.json();
+            if (!infoData.user) {
+                showToast('请先登录后再保存路线');
+                return;
+            }
+        } catch(e) {
+            showToast('请先登录后再保存路线');
+            return;
+        }
+
+        try {
+            const resp = await fetch('/api/customize/save', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ route: route })
+            });
+
+            const data = await resp.json();
+            if (resp.ok && data.success) {
+                showToast('路线已保存！可在个人中心查看');
+            } else if (resp.status === 401) {
+                showToast('请先登录后再保存路线');
+            } else {
+                showToast(data.error || '保存失败，请稍后重试');
+            }
+        } catch(e) {
+            showToast('网络错误，保存失败');
+            console.error('保存路线失败:', e);
+        }
+    }
+
+    // ========== 导出图片 ==========
+    let selectedExportStyle = 'modern_card';
+
+    function exportRoute() {
+        const route = routesData[currentRouteIdx];
+        if (!route) return;
+
+        // 显示样式选择弹窗
+        const modal = document.createElement('div');
+        modal.className = 'export-modal';
+        modal.id = 'exportModal';
+        modal.innerHTML = `
+            <div class="export-modal-content">
+                <h3>📥 选择导出样式</h3>
+                <div class="export-style-options">
+                    <div class="export-style-option selected" data-style="modern_card" onclick="selectExportStyle(this)">
+                        <span class="export-style-icon">🎨</span>
+                        <div class="export-style-info">
+                            <div class="export-style-name">现代卡片</div>
+                            <div class="export-style-desc">简洁大方的卡片布局，适合分享朋友圈</div>
+                        </div>
+                    </div>
+                    <div class="export-style-option" data-style="subway_map" onclick="selectExportStyle(this)">
+                        <span class="export-style-icon">🚇</span>
+                        <div class="export-style-info">
+                            <div class="export-style-name">地铁线路图</div>
+                            <div class="export-style-desc">仿地铁线路图设计，每日不同颜色</div>
+                        </div>
+                    </div>
+                    <div class="export-style-option" data-style="infographic" onclick="selectExportStyle(this)">
+                        <span class="export-style-icon">📊</span>
+                        <div class="export-style-info">
+                            <div class="export-style-name">信息图表</div>
+                            <div class="export-style-desc">数据可视化风格，含费用统计</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="export-modal-actions">
+                    <button class="export-modal-cancel" onclick="closeExportModal()">取消</button>
+                    <button class="export-modal-confirm" onclick="doExport()">导出图片</button>
+                </div>
+            </div>
+        `;
+        document.body.appendChild(modal);
+    }
+
+    function selectExportStyle(el) {
+        document.querySelectorAll('.export-style-option').forEach(opt => opt.classList.remove('selected'));
+        el.classList.add('selected');
+        selectedExportStyle = el.dataset.style;
+    }
+
+    function closeExportModal() {
+        const modal = document.getElementById('exportModal');
+        if (modal) modal.remove();
+    }
+
+    async function doExport() {
+        const route = routesData[currentRouteIdx];
+        if (!route) return;
+
+        closeExportModal();
+        showToast('正在生成图片...');
+
+        try {
+            const resp = await fetch('/api/export/custom', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    route: route,
+                    style: selectedExportStyle
+                })
+            });
+
+            if (resp.ok) {
+                // 下载图片
+                const blob = await resp.blob();
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `${route.name || '定制路线'}_行程.png`;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+                showToast('导出成功！');
+            } else {
+                const data = await resp.json();
+                showToast(data.error || '导出失败');
+            }
+        } catch(e) {
+            console.error('导出失败:', e);
+            showToast('网络错误，导出失败');
+        }
+    }
+
+    // ========== 工具函数 ==========
+    function recalcTransport(attractions, transportMode) {
+        if (!attractions || attractions.length < 2) {
+            return { total_distance: 0, total_time: 0, cost: 0, segments: [] };
+        }
+        const segments = [];
+        let totalDist = 0, totalTime = 0;
+        for (let i = 0; i < attractions.length - 1; i++) {
+            const a = attractions[i], b = attractions[i + 1];
+            const dist = haversineDistance(a.latitude, a.longitude, b.latitude, b.longitude);
+            totalDist += dist;
+            const speed = transportMode === 'self-driving' ? 30 : 20;
+            const timeMin = (dist / speed) * 60 + 10;
+            segments.push({ from: a.name, to: b.name, distance: Math.round(dist * 10) / 10, time: Math.round(timeMin), mode: transportMode === 'self-driving' ? 'driving' : 'transit' });
+            totalTime += timeMin;
+        }
+        const cost = transportMode === 'self-driving' ? totalDist * 0.8 : segments.length * 8;
+        return { total_distance: Math.round(totalDist * 10) / 10, total_time: Math.round(totalTime), cost: Math.round(cost), segments };
+    }
+
+    function recalcDayCost(dayPlan, transportMode) {
+        let cost = 0;
+        (dayPlan.attractions || []).forEach(a => cost += a.ticket_price || 0);
+        if (dayPlan.hotel) cost += dayPlan.hotel.price_night || 300;
+        const meals = dayPlan.meals || {};
+        if (meals.lunch) cost += meals.lunch.avg_price || 60;
+        if (meals.dinner) cost += meals.dinner.avg_price || 60;
+        if (dayPlan.transport) cost += dayPlan.transport.cost || 0;
+        return Math.round(cost);
+    }
+
+    function haversineDistance(lat1, lon1, lat2, lon2) {
+        const R = 6371;
+        const dLat = (lat2 - lat1) * Math.PI / 180;
+        const dLon = (lon2 - lon1) * Math.PI / 180;
+        const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+                  Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+                  Math.sin(dLon/2) * Math.sin(dLon/2);
+        return R * 2 * Math.asin(Math.sqrt(a));
+    }
+
+    function showToast(msg) {
+        let toast = document.getElementById('toast-msg');
+        if (!toast) {
+            toast = document.createElement('div');
+            toast.id = 'toast-msg';
+            toast.style.cssText = 'position:fixed;top:80px;left:50%;transform:translateX(-50%);background:#2c5282;color:white;padding:12px 24px;border-radius:10px;font-size:14px;z-index:9999;box-shadow:0 4px 15px rgba(44,82,130,0.3);transition:opacity 0.3s;';
+            document.body.appendChild(toast);
+        }
+        toast.textContent = msg;
+        toast.style.opacity = '1';
+        setTimeout(() => { toast.style.opacity = '0'; }, 2500);
+    }
+    </script>
+</body>
+</html>

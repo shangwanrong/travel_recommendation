@@ -1,0 +1,1014 @@
+{
+  "routes": [
+    {
+      "id": "hz-3days-001",
+      "city": "杭州",
+      "city_id": "hangzhou",
+      "days": 3,
+      "name": "杭州3天2晚深度游",
+      "description": "游览西湖十景，品味杭帮菜，感受江南水乡韵味",
+      "popularity": 95,
+      "price_range": "1500-2500元",
+      "tags": ["文化古迹", "自然风光", "美食体验"],
+      "cover_image": "/static/images/attractions/xihu.jpg",
+      "itinerary": [
+        {
+          "day": 1,
+          "activities": [
+            {"time": "09:00", "type": "attraction", "name": "西湖景区", "description": "游船、断桥残雪、苏堤春晓", "price": 55, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "12:30", "type": "dining", "name": "楼外楼", "description": "品尝西湖醋鱼、龙井虾仁", "price": 120, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "14:00", "type": "attraction", "name": "雷峰塔", "description": "登塔俯瞰西湖全景", "price": 40, "image": "/static/images/attractions/leifengta.jpg"},
+            {"time": "17:00", "type": "attraction", "name": "花港观鱼", "description": "西湖十景之一，观赏红鱼池", "price": 0, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "18:30", "type": "dining", "name": "知味观", "description": "杭州传统小吃", "price": 80, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "20:00", "type": "hotel", "name": "西湖如家酒店", "description": "近西湖，交通便利", "price": 298, "image": "/static/images/attractions/xihu.jpg"}
+          ]
+        },
+        {
+          "day": 2,
+          "activities": [
+            {"time": "08:00", "type": "dining", "name": "酒店早餐", "description": "自助早餐", "price": 0, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "09:00", "type": "attraction", "name": "灵隐寺", "description": "飞来峰、灵隐寺祈福", "price": 75, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "12:00", "type": "dining", "name": "灵隐素斋", "description": "品尝寺庙素食", "price": 68, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "14:00", "type": "attraction", "name": "宋城", "description": "《宋城千古情》演出", "price": 310, "image": "/static/images/attractions/songchengguzhen.jpg"},
+            {"time": "18:30", "type": "dining", "name": "外婆家", "description": "杭帮菜连锁", "price": 95, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "20:00", "type": "hotel", "name": "西湖如家酒店", "description": "继续入住", "price": 298, "image": "/static/images/attractions/xihu.jpg"}
+          ]
+        },
+        {
+          "day": 3,
+          "activities": [
+            {"time": "08:00", "type": "dining", "name": "酒店早餐", "description": "自助早餐", "price": 0, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "09:00", "type": "attraction", "name": "西溪湿地", "description": "生态湿地、乘船游览", "price": 80, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "12:00", "type": "dining", "name": "绿茶餐厅", "description": "创意杭帮菜", "price": 110, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "14:00", "type": "attraction", "name": "河坊街", "description": "购买特产、品尝小吃", "price": 100, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "16:00", "type": "attraction", "name": "龙井村", "description": "品龙井茶、观茶园", "price": 0, "image": "/static/images/attractions/xihu.jpg"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hz-2days-001",
+      "city": "杭州",
+      "city_id": "hangzhou",
+      "days": 2,
+      "name": "杭州2天1晚精华游",
+      "description": "西湖核心景点快速游览，感受杭州经典之美",
+      "popularity": 90,
+      "price_range": "800-1500元",
+      "tags": ["自然风光", "文化古迹"],
+      "cover_image": "/static/images/attractions/xihu.jpg",
+      "itinerary": [
+        {
+          "day": 1,
+          "activities": [
+            {"time": "09:00", "type": "attraction", "name": "西湖景区", "description": "断桥、苏堤、白堤", "price": 55, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "12:00", "type": "dining", "name": "楼外楼", "description": "西湖醋鱼", "price": 120, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "14:00", "type": "attraction", "name": "雷峰塔", "description": "俯瞰西湖", "price": 40, "image": "/static/images/attractions/leifengta.jpg"},
+            {"time": "16:30", "type": "attraction", "name": "三潭印月", "description": "西湖中岛，一元纸币背面风景", "price": 55, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "18:30", "type": "dining", "name": "新白鹿餐厅", "description": "杭帮菜老牌餐厅", "price": 85, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "20:00", "type": "hotel", "name": "汉庭酒店西湖店", "description": "近西湖景区", "price": 258, "image": "/static/images/attractions/xihu.jpg"}
+          ]
+        },
+        {
+          "day": 2,
+          "activities": [
+            {"time": "09:00", "type": "attraction", "name": "灵隐寺", "description": "千年古刹", "price": 75, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "12:00", "type": "dining", "name": "奎元馆", "description": "百年老店，片儿川", "price": 45, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "14:00", "type": "attraction", "name": "河坊街", "description": "古街购物", "price": 80, "image": "/static/images/attractions/xihu.jpg"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cd-3days-001",
+      "city": "成都",
+      "city_id": "chengdu",
+      "days": 3,
+      "name": "成都3天2晚美食之旅",
+      "description": "品尝正宗川菜，探访大熊猫基地，体验蓉城慢生活",
+      "popularity": 92,
+      "price_range": "1200-2000元",
+      "tags": ["美食体验", "自然生态", "休闲"],
+      "cover_image": "/static/images/attractions/chengdu_panda.jpg",
+      "itinerary": [
+        {
+          "day": 1,
+          "activities": [
+            {"time": "08:30", "type": "attraction", "name": "大熊猫繁育研究基地", "description": "近距离观看可爱熊猫", "price": 55, "image": "/static/images/attractions/chengdu_panda.jpg"},
+            {"time": "12:00", "type": "dining", "name": "陈麻婆豆腐", "description": "正宗川菜，百年老店", "price": 80, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "15:00", "type": "attraction", "name": "宽窄巷子", "description": "体验成都慢生活", "price": 0, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "18:00", "type": "dining", "name": "小龙坎火锅", "description": "地道成都火锅", "price": 120, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "20:00", "type": "hotel", "name": "成都春熙路酒店", "description": "市中心，交通便利", "price": 328, "image": "/static/images/attractions/xihu.jpg"}
+          ]
+        },
+        {
+          "day": 2,
+          "activities": [
+            {"time": "09:00", "type": "attraction", "name": "杜甫草堂", "description": "诗圣故居", "price": 50, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "11:30", "type": "attraction", "name": "武侯祠", "description": "三国文化圣地", "price": 50, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "13:00", "type": "dining", "name": "锦里小吃街", "description": "各种成都小吃", "price": 60, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "15:00", "type": "attraction", "name": "锦里", "description": "古街游览", "price": 0, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "18:00", "type": "dining", "name": "蜀九香火锅", "description": "成都人气火锅", "price": 100, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "20:00", "type": "hotel", "name": "成都春熙路酒店", "description": "继续入住", "price": 328, "image": "/static/images/attractions/xihu.jpg"}
+          ]
+        },
+        {
+          "day": 3,
+          "activities": [
+            {"time": "07:00", "type": "attraction", "name": "青城山", "description": "道教名山，幽甲天下", "price": 90, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "12:00", "type": "dining", "name": "都江堰小吃", "description": "当地特色美食", "price": 50, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "13:30", "type": "attraction", "name": "都江堰", "description": "千年水利工程", "price": 80, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "17:00", "type": "attraction", "name": "人民公园", "description": "喝盖碗茶，体验成都人生活", "price": 0, "image": "/static/images/attractions/xihu.jpg"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cd-4days-001",
+      "city": "成都",
+      "city_id": "chengdu",
+      "days": 4,
+      "name": "成都4天3晚深度体验游",
+      "description": "深度体验成都美食文化、自然风光与历史古迹",
+      "popularity": 88,
+      "price_range": "1800-3000元",
+      "tags": ["美食体验", "文化古迹", "自然风光", "休闲"],
+      "cover_image": "/static/images/attractions/chengdu_panda.jpg",
+      "itinerary": [
+        {
+          "day": 1,
+          "activities": [
+            {"time": "08:30", "type": "attraction", "name": "大熊猫繁育研究基地", "description": "看熊猫宝宝，建议早到", "price": 55, "image": "/static/images/attractions/chengdu_panda.jpg"},
+            {"time": "12:00", "type": "dining", "name": "建设路小吃街", "description": "网红小吃聚集地", "price": 60, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "14:30", "type": "attraction", "name": "春熙路", "description": "成都最繁华商业街", "price": 0, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "18:00", "type": "dining", "name": "大龙燚火锅", "description": "成都必吃火锅", "price": 110, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "20:00", "type": "hotel", "name": "成都民宿", "description": "太古里附近精品民宿", "price": 398, "image": "/static/images/attractions/xihu.jpg"}
+          ]
+        },
+        {
+          "day": 2,
+          "activities": [
+            {"time": "09:00", "type": "attraction", "name": "杜甫草堂", "description": "诗圣杜甫流寓成都时的居所", "price": 50, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "11:00", "type": "attraction", "name": "武侯祠", "description": "全国唯一君臣合祀祠庙", "price": 50, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "12:30", "type": "dining", "name": "锦里小吃", "description": "三大炮、糖油果子", "price": 50, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "14:00", "type": "attraction", "name": "锦里古街", "description": "西蜀第一街", "price": 0, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "16:00", "type": "attraction", "name": "宽窄巷子", "description": "成都城市名片", "price": 0, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "18:30", "type": "dining", "name": "川西坝子", "description": "正宗川菜", "price": 90, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "20:00", "type": "hotel", "name": "成都民宿", "description": "继续入住", "price": 398, "image": "/static/images/attractions/xihu.jpg"}
+          ]
+        },
+        {
+          "day": 3,
+          "activities": [
+            {"time": "07:00", "type": "attraction", "name": "青城山", "description": "道教发祥地，天下幽", "price": 90, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "12:00", "type": "dining", "name": "青城山素斋", "description": "道家养生素食", "price": 50, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "14:00", "type": "attraction", "name": "都江堰", "description": "世界文化遗产，千年水利", "price": 80, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "18:00", "type": "dining", "name": "玉林串串香", "description": "成都特色串串", "price": 70, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "20:00", "type": "hotel", "name": "成都民宿", "description": "继续入住", "price": 398, "image": "/static/images/attractions/xihu.jpg"}
+          ]
+        },
+        {
+          "day": 4,
+          "activities": [
+            {"time": "09:00", "type": "attraction", "name": "文殊院", "description": "成都著名佛教寺院", "price": 0, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "11:00", "type": "dining", "name": "文殊院素斋", "description": "宫廷素斋", "price": 35, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "13:00", "type": "attraction", "name": "人民公园", "description": "鹤鸣茶社品盖碗茶", "price": 0, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "15:00", "type": "attraction", "name": "九眼桥", "description": "成都夜生活地标", "price": 0, "image": "/static/images/attractions/xihu.jpg"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "xa-4days-001",
+      "city": "西安",
+      "city_id": "xian",
+      "days": 4,
+      "name": "西安4天3晚古都文化游",
+      "description": "探索千年古都的历史文化，品味陕西美食",
+      "popularity": 88,
+      "price_range": "1800-2800元",
+      "tags": ["历史文化", "古迹", "博物馆"],
+      "cover_image": "/static/images/attractions/terracotta.jpg",
+      "itinerary": [
+        {
+          "day": 1,
+          "activities": [
+            {"time": "08:00", "type": "attraction", "name": "秦始皇兵马俑", "description": "世界第八大奇迹", "price": 120, "image": "/static/images/attractions/terracotta.jpg"},
+            {"time": "12:00", "type": "dining", "name": "老孙家泡馍", "description": "西安特色羊肉泡馍", "price": 45, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "14:30", "type": "attraction", "name": "华清宫", "description": "唐代皇家温泉行宫", "price": 120, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "18:00", "type": "dining", "name": "回民街", "description": "各种清真小吃", "price": 60, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "20:00", "type": "hotel", "name": "钟楼附近酒店", "description": "市中心，步行可达回民街", "price": 358, "image": "/static/images/attractions/xihu.jpg"}
+          ]
+        },
+        {
+          "day": 2,
+          "activities": [
+            {"time": "09:00", "type": "attraction", "name": "古城墙", "description": "骑行古城墙，全长13.7公里", "price": 54, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "12:00", "type": "dining", "name": "子午路张记肉夹馍", "description": "西安名吃", "price": 25, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "14:00", "type": "attraction", "name": "大雁塔", "description": "唐代古塔，玄奘译经之地", "price": 40, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "16:00", "type": "attraction", "name": "大唐不夜城", "description": "大唐文化主题街区", "price": 0, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "18:30", "type": "dining", "name": "长安大排档", "description": "陕西特色菜", "price": 80, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "20:00", "type": "hotel", "name": "钟楼附近酒店", "description": "继续入住", "price": 358, "image": "/static/images/attractions/xihu.jpg"}
+          ]
+        },
+        {
+          "day": 3,
+          "activities": [
+            {"time": "09:00", "type": "attraction", "name": "陕西历史博物馆", "description": "华夏宝库，馆藏文物37万件", "price": 0, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "12:00", "type": "dining", "name": "biangbiang面", "description": "陕西特色面食", "price": 30, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "14:00", "type": "attraction", "name": "小雁塔", "description": "唐代佛塔，世界文化遗产", "price": 0, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "16:00", "type": "attraction", "name": "回民街", "description": "品尝小吃，购买特产", "price": 80, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "18:30", "type": "dining", "name": "醉长安", "description": "陕菜老字号", "price": 90, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "20:00", "type": "hotel", "name": "钟楼附近酒店", "description": "继续入住", "price": 358, "image": "/static/images/attractions/xihu.jpg"}
+          ]
+        },
+        {
+          "day": 4,
+          "activities": [
+            {"time": "08:00", "type": "attraction", "name": "华山", "description": "五岳之一，奇险天下第一山", "price": 160, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "12:00", "type": "dining", "name": "华山脚下农家菜", "description": "当地特色", "price": 50, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "14:00", "type": "attraction", "name": "碑林博物馆", "description": "收藏历代碑石墓志", "price": 65, "image": "/static/images/attractions/xihu.jpg"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "xa-3days-001",
+      "city": "西安",
+      "city_id": "xian",
+      "days": 3,
+      "name": "西安3天2晚经典游",
+      "description": "兵马俑、古城墙、回民街，感受千年古都",
+      "popularity": 86,
+      "price_range": "1400-2200元",
+      "tags": ["历史文化", "美食", "古迹"],
+      "cover_image": "/static/images/attractions/terracotta.jpg",
+      "itinerary": [
+        {
+          "day": 1,
+          "activities": [
+            {"time": "08:00", "type": "attraction", "name": "秦始皇兵马俑", "description": "世界第八大奇迹", "price": 120, "image": "/static/images/attractions/terracotta.jpg"},
+            {"time": "12:00", "type": "dining", "name": "老孙家泡馍", "description": "西安特色", "price": 45, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "15:00", "type": "attraction", "name": "华清宫", "description": "皇家温泉行宫", "price": 120, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "18:30", "type": "dining", "name": "回民街小吃", "description": "各种清真小吃", "price": 60, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "20:00", "type": "hotel", "name": "如家酒店钟楼店", "description": "近钟楼", "price": 268, "image": "/static/images/attractions/xihu.jpg"}
+          ]
+        },
+        {
+          "day": 2,
+          "activities": [
+            {"time": "09:00", "type": "attraction", "name": "古城墙", "description": "骑行城墙", "price": 54, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "11:30", "type": "attraction", "name": "大雁塔", "description": "唐代古塔", "price": 40, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "14:00", "type": "attraction", "name": "陕西历史博物馆", "description": "华夏宝库", "price": 0, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "18:00", "type": "dining", "name": "长安大排档", "description": "陕菜名店", "price": 80, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "20:00", "type": "hotel", "name": "如家酒店钟楼店", "description": "继续入住", "price": 268, "image": "/static/images/attractions/xihu.jpg"}
+          ]
+        },
+        {
+          "day": 3,
+          "activities": [
+            {"time": "09:00", "type": "attraction", "name": "碑林博物馆", "description": "书法艺术宝库", "price": 65, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "11:30", "type": "attraction", "name": "小雁塔", "description": "世界文化遗产", "price": 0, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "13:00", "type": "dining", "name": "贾三灌汤包", "description": "西安名吃", "price": 35, "image": "/static/images/dining/restaurant.jpg"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "xm-3days-001",
+      "city": "厦门",
+      "city_id": "xiamen",
+      "days": 3,
+      "name": "厦门3天2晚浪漫海滨游",
+      "description": "海滨城市文艺小资之旅，鼓浪屿与环岛路",
+      "popularity": 85,
+      "price_range": "1500-2200元",
+      "tags": ["海滨", "文艺", "美食"],
+      "cover_image": "/static/images/attractions/gulangyu.jpg",
+      "itinerary": [
+        {
+          "day": 1,
+          "activities": [
+            {"time": "08:30", "type": "attraction", "name": "鼓浪屿", "description": "钢琴之岛，万国建筑博览", "price": 35, "image": "/static/images/attractions/gulangyu.jpg"},
+            {"time": "11:30", "type": "attraction", "name": "日光岩", "description": "鼓浪屿最高点，360度观景", "price": 60, "image": "/static/images/attractions/gulangyu.jpg"},
+            {"time": "12:30", "type": "dining", "name": "海鲜大排档", "description": "新鲜海鲜", "price": 120, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "14:30", "type": "attraction", "name": "菽庄花园", "description": "海上花园，钢琴博物馆", "price": 30, "image": "/static/images/attractions/gulangyu.jpg"},
+            {"time": "18:00", "type": "dining", "name": "沙茶面", "description": "厦门特色", "price": 25, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "20:00", "type": "hotel", "name": "曾厝垵民宿", "description": "文艺海边民宿", "price": 288, "image": "/static/images/attractions/gulangyu.jpg"}
+          ]
+        },
+        {
+          "day": 2,
+          "activities": [
+            {"time": "09:00", "type": "attraction", "name": "曾厝垵", "description": "文艺村落，创意小店", "price": 0, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "11:00", "type": "attraction", "name": "环岛路", "description": "海滨骑行，最美海岸线", "price": 0, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "13:00", "type": "dining", "name": "海蛎煎", "description": "闽南特色小吃", "price": 30, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "15:00", "type": "attraction", "name": "南普陀寺", "description": "闽南佛教胜地", "price": 0, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "17:00", "type": "attraction", "name": "胡里山炮台", "description": "世界现存最大海岸炮", "price": 25, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "18:30", "type": "dining", "name": "姜母鸭", "description": "厦门传统名菜", "price": 80, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "20:00", "type": "hotel", "name": "曾厝垵民宿", "description": "继续入住", "price": 288, "image": "/static/images/attractions/gulangyu.jpg"}
+          ]
+        },
+        {
+          "day": 3,
+          "activities": [
+            {"time": "09:00", "type": "attraction", "name": "厦门大学", "description": "中国最美大学之一", "price": 0, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "11:00", "type": "attraction", "name": "中山路", "description": "购物步行街，骑楼建筑", "price": 80, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "13:00", "type": "dining", "name": "土笋冻", "description": "厦门特色小吃", "price": 15, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "15:00", "type": "attraction", "name": "集美学村", "description": "嘉庚建筑群", "price": 0, "image": "/static/images/attractions/xihu.jpg"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bj-5days-001",
+      "city": "北京",
+      "city_id": "beijing",
+      "days": 5,
+      "name": "北京5天4晚经典游",
+      "description": "首都历史文化深度游，故宫长城一个不少",
+      "popularity": 93,
+      "price_range": "2500-4000元",
+      "tags": ["历史", "文化", "现代"],
+      "cover_image": "/static/images/attractions/forbidden_city.jpg",
+      "itinerary": [
+        {
+          "day": 1,
+          "activities": [
+            {"time": "08:30", "type": "attraction", "name": "天安门广场", "description": "世界最大城市广场", "price": 0, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "09:30", "type": "attraction", "name": "故宫博物院", "description": "明清皇宫，世界五大宫殿之首", "price": 60, "image": "/static/images/attractions/forbidden_city.jpg"},
+            {"time": "13:00", "type": "dining", "name": "全聚德烤鸭", "description": "百年老字号烤鸭", "price": 180, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "15:00", "type": "attraction", "name": "景山公园", "description": "俯瞰故宫全景", "price": 2, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "17:00", "type": "attraction", "name": "北海公园", "description": "皇家园林，白塔倒影", "price": 10, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "19:00", "type": "dining", "name": "护国寺小吃", "description": "北京传统小吃", "price": 40, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "20:30", "type": "hotel", "name": "前门附近酒店", "description": "近天安门，交通方便", "price": 388, "image": "/static/images/attractions/xihu.jpg"}
+          ]
+        },
+        {
+          "day": 2,
+          "activities": [
+            {"time": "06:30", "type": "attraction", "name": "八达岭长城", "description": "不到长城非好汉", "price": 40, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "12:00", "type": "dining", "name": "长城脚下农家院", "description": "京郊农家菜", "price": 60, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "15:00", "type": "attraction", "name": "明十三陵", "description": "明朝皇帝陵寝", "price": 45, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "19:00", "type": "dining", "name": "东来顺涮肉", "description": "百年涮羊肉", "price": 150, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "20:30", "type": "hotel", "name": "前门附近酒店", "description": "继续入住", "price": 388, "image": "/static/images/attractions/xihu.jpg"}
+          ]
+        },
+        {
+          "day": 3,
+          "activities": [
+            {"time": "09:00", "type": "attraction", "name": "颐和园", "description": "皇家园林博物馆", "price": 30, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "12:00", "type": "dining", "name": "清华食堂", "description": "大学食堂体验", "price": 30, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "14:00", "type": "attraction", "name": "圆明园", "description": "万园之园遗址", "price": 10, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "16:30", "type": "attraction", "name": "清华大学", "description": "中国最高学府", "price": 0, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "18:30", "type": "dining", "name": "海淀黄庄美食", "description": "学院路美食", "price": 60, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "20:00", "type": "hotel", "name": "前门附近酒店", "description": "继续入住", "price": 388, "image": "/static/images/attractions/xihu.jpg"}
+          ]
+        },
+        {
+          "day": 4,
+          "activities": [
+            {"time": "09:00", "type": "attraction", "name": "天坛", "description": "明清祭坛建筑，祈年殿", "price": 34, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "11:00", "type": "attraction", "name": "国家博物馆", "description": "中华文物宝库", "price": 0, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "13:00", "type": "dining", "name": "老北京炸酱面", "description": "正宗京味炸酱面", "price": 35, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "15:00", "type": "attraction", "name": "南锣鼓巷", "description": "北京最古老的街区之一", "price": 0, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "17:00", "type": "attraction", "name": "什刹海", "description": "老北京胡同，酒吧街", "price": 0, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "18:30", "type": "dining", "name": "烤肉季", "description": "什刹海边的百年烤肉", "price": 100, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "20:00", "type": "hotel", "name": "前门附近酒店", "description": "继续入住", "price": 388, "image": "/static/images/attractions/xihu.jpg"}
+          ]
+        },
+        {
+          "day": 5,
+          "activities": [
+            {"time": "09:00", "type": "attraction", "name": "鸟巢水立方", "description": "奥运场馆", "price": 50, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "11:00", "type": "attraction", "name": "798艺术区", "description": "当代艺术聚集地", "price": 0, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "13:00", "type": "dining", "name": "簋街小龙虾", "description": "北京夜宵圣地", "price": 120, "image": "/static/images/dining/restaurant.jpg"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bj-3days-001",
+      "city": "北京",
+      "city_id": "beijing",
+      "days": 3,
+      "name": "北京3天2晚精华游",
+      "description": "故宫长城天坛，北京经典景点一网打尽",
+      "popularity": 91,
+      "price_range": "1600-2800元",
+      "tags": ["历史", "文化", "古迹"],
+      "cover_image": "/static/images/attractions/forbidden_city.jpg",
+      "itinerary": [
+        {
+          "day": 1,
+          "activities": [
+            {"time": "08:30", "type": "attraction", "name": "天安门广场", "description": "世界最大城市广场", "price": 0, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "09:30", "type": "attraction", "name": "故宫博物院", "description": "明清皇宫", "price": 60, "image": "/static/images/attractions/forbidden_city.jpg"},
+            {"time": "13:00", "type": "dining", "name": "全聚德烤鸭", "description": "北京烤鸭", "price": 180, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "15:00", "type": "attraction", "name": "景山公园", "description": "俯瞰故宫", "price": 2, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "18:00", "type": "dining", "name": "护国寺小吃", "description": "北京传统小吃", "price": 40, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "20:00", "type": "hotel", "name": "王府井附近酒店", "description": "近故宫", "price": 358, "image": "/static/images/attractions/xihu.jpg"}
+          ]
+        },
+        {
+          "day": 2,
+          "activities": [
+            {"time": "07:00", "type": "attraction", "name": "八达岭长城", "description": "不到长城非好汉", "price": 40, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "12:00", "type": "dining", "name": "农家菜", "description": "京郊农家饭", "price": 50, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "15:00", "type": "attraction", "name": "鸟巢水立方", "description": "奥运场馆", "price": 50, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "18:00", "type": "dining", "name": "东来顺", "description": "百年涮羊肉", "price": 150, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "20:00", "type": "hotel", "name": "王府井附近酒店", "description": "继续入住", "price": 358, "image": "/static/images/attractions/xihu.jpg"}
+          ]
+        },
+        {
+          "day": 3,
+          "activities": [
+            {"time": "09:00", "type": "attraction", "name": "天坛", "description": "明清祭坛", "price": 34, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "11:30", "type": "attraction", "name": "颐和园", "description": "皇家园林", "price": 30, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "14:00", "type": "dining", "name": "炸酱面", "description": "老北京炸酱面", "price": 35, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "15:30", "type": "attraction", "name": "南锣鼓巷", "description": "胡同文化", "price": 0, "image": "/static/images/attractions/xihu.jpg"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lj-4days-001",
+      "city": "丽江",
+      "city_id": "lijiang",
+      "days": 4,
+      "name": "丽江4天3晚古城风情游",
+      "description": "纳西族文化体验之旅，雪山古城两相宜",
+      "popularity": 87,
+      "price_range": "1800-3000元",
+      "tags": ["古城", "自然", "浪漫"],
+      "cover_image": "/static/images/attractions/lijiang_old_town.jpg",
+      "itinerary": [
+        {
+          "day": 1,
+          "activities": [
+            {"time": "10:00", "type": "attraction", "name": "丽江古城", "description": "世界文化遗产，纳西族古镇", "price": 50, "image": "/static/images/attractions/lijiang_old_town.jpg"},
+            {"time": "12:30", "type": "dining", "name": "腊排骨火锅", "description": "丽江特色美食", "price": 80, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "14:30", "type": "attraction", "name": "木府", "description": "纳西族土司府邸", "price": 40, "image": "/static/images/attractions/lijiang_old_town.jpg"},
+            {"time": "17:00", "type": "attraction", "name": "四方街", "description": "古城中心广场", "price": 0, "image": "/static/images/attractions/lijiang_old_town.jpg"},
+            {"time": "18:30", "type": "dining", "name": "黑山羊火锅", "description": "丽江美食", "price": 90, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "20:00", "type": "hotel", "name": "古城客栈", "description": "纳西族风情客栈", "price": 268, "image": "/static/images/attractions/lijiang_old_town.jpg"}
+          ]
+        },
+        {
+          "day": 2,
+          "activities": [
+            {"time": "07:00", "type": "attraction", "name": "玉龙雪山", "description": "纳西族神山，海拔5596米", "price": 100, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "11:00", "type": "attraction", "name": "蓝月谷", "description": "雪山脚下的蓝色湖泊", "price": 20, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "13:00", "type": "dining", "name": "雪山餐厅", "description": "景区午餐", "price": 60, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "15:00", "type": "attraction", "name": "甘海子", "description": "高原草甸牧场", "price": 0, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "18:00", "type": "dining", "name": "野生菌火锅", "description": "云南特产", "price": 120, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "20:00", "type": "hotel", "name": "古城客栈", "description": "继续入住", "price": 268, "image": "/static/images/attractions/lijiang_old_town.jpg"}
+          ]
+        },
+        {
+          "day": 3,
+          "activities": [
+            {"time": "09:00", "type": "attraction", "name": "束河古镇", "description": "比丽江更安静的古镇", "price": 30, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "12:00", "type": "dining", "name": "纳西烤鱼", "description": "当地特色", "price": 50, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "14:00", "type": "attraction", "name": "白沙古镇", "description": "白沙壁画，最原始的纳西村落", "price": 0, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "17:00", "type": "attraction", "name": "拉市海", "description": "湿地观鸟，骑马体验", "price": 80, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "18:30", "type": "dining", "name": "鸡豆凉粉", "description": "丽江小吃", "price": 15, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "20:00", "type": "hotel", "name": "古城客栈", "description": "继续入住", "price": 268, "image": "/static/images/attractions/lijiang_old_town.jpg"}
+          ]
+        },
+        {
+          "day": 4,
+          "activities": [
+            {"time": "08:00", "type": "attraction", "name": "泸沽湖", "description": "高原湖泊，东方女儿国", "price": 70, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "12:00", "type": "dining", "name": "摩梭族家常菜", "description": "湖畔特色", "price": 50, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "14:00", "type": "attraction", "name": "里格半岛", "description": "泸沽湖最美观景点", "price": 0, "image": "/static/images/attractions/xihu.jpg"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sh-3days-001",
+      "city": "上海",
+      "city_id": "shanghai",
+      "days": 3,
+      "name": "上海3天2晚都市风情游",
+      "description": "感受国际大都市的现代与传统，外滩到迪士尼",
+      "popularity": 91,
+      "price_range": "2000-3500元",
+      "tags": ["现代", "繁华", "美食"],
+      "cover_image": "/static/images/attractions/waitan.jpg",
+      "itinerary": [
+        {
+          "day": 1,
+          "activities": [
+            {"time": "09:00", "type": "attraction", "name": "外滩", "description": "万国建筑博览群", "price": 0, "image": "/static/images/attractions/waitan.jpg"},
+            {"time": "10:30", "type": "attraction", "name": "南京路步行街", "description": "中华商业第一街", "price": 0, "image": "/static/images/attractions/waitan.jpg"},
+            {"time": "12:00", "type": "dining", "name": "南翔小笼", "description": "上海特色小吃", "price": 45, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "14:00", "type": "attraction", "name": "东方明珠", "description": "登塔俯瞰浦江两岸", "price": 199, "image": "/static/images/attractions/dongfangmingzhu.jpg"},
+            {"time": "17:00", "type": "attraction", "name": "陆家嘴", "description": "上海金融中心", "price": 0, "image": "/static/images/attractions/dongfangmingzhu.jpg"},
+            {"time": "18:30", "type": "dining", "name": "本帮菜馆", "description": "浓油赤酱的上海味道", "price": 100, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "20:00", "type": "hotel", "name": "外滩附近酒店", "description": "观夜景最佳位置", "price": 488, "image": "/static/images/attractions/waitan.jpg"}
+          ]
+        },
+        {
+          "day": 2,
+          "activities": [
+            {"time": "09:00", "type": "attraction", "name": "豫园", "description": "江南古典园林", "price": 40, "image": "/static/images/attractions/yuyuan.jpg"},
+            {"time": "11:00", "type": "attraction", "name": "城隍庙", "description": "上海老城厢", "price": 0, "image": "/static/images/attractions/yuyuan.jpg"},
+            {"time": "12:30", "type": "dining", "name": "生煎包", "description": "上海经典小吃", "price": 25, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "14:00", "type": "attraction", "name": "田子坊", "description": "文艺创意园区", "price": 0, "image": "/static/images/attractions/yuyuan.jpg"},
+            {"time": "16:00", "type": "attraction", "name": "新天地", "description": "石库门里的时尚", "price": 0, "image": "/static/images/attractions/waitan.jpg"},
+            {"time": "18:30", "type": "dining", "name": "上海本帮菜", "description": "红烧肉、油爆虾", "price": 110, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "20:00", "type": "hotel", "name": "外滩附近酒店", "description": "继续入住", "price": 488, "image": "/static/images/attractions/waitan.jpg"}
+          ]
+        },
+        {
+          "day": 3,
+          "activities": [
+            {"time": "08:00", "type": "attraction", "name": "迪士尼乐园", "description": "梦幻童话世界", "price": 475, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "12:00", "type": "dining", "name": "迪士尼餐厅", "description": "主题餐饮", "price": 80, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "18:00", "type": "dining", "name": "小杨生煎", "description": "上海生煎名店", "price": 30, "image": "/static/images/dining/restaurant.jpg"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sh-2days-001",
+      "city": "上海",
+      "city_id": "shanghai",
+      "days": 2,
+      "name": "上海2天1晚经典游",
+      "description": "外滩豫园田子坊，上海精华景点全覆盖",
+      "popularity": 89,
+      "price_range": "1200-2000元",
+      "tags": ["现代", "文艺", "美食"],
+      "cover_image": "/static/images/attractions/waitan.jpg",
+      "itinerary": [
+        {
+          "day": 1,
+          "activities": [
+            {"time": "09:00", "type": "attraction", "name": "外滩", "description": "万国建筑博览群", "price": 0, "image": "/static/images/attractions/waitan.jpg"},
+            {"time": "11:00", "type": "attraction", "name": "东方明珠", "description": "上海地标", "price": 199, "image": "/static/images/attractions/dongfangmingzhu.jpg"},
+            {"time": "13:00", "type": "dining", "name": "南翔小笼", "description": "经典小笼包", "price": 45, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "15:00", "type": "attraction", "name": "豫园", "description": "江南园林", "price": 40, "image": "/static/images/attractions/yuyuan.jpg"},
+            {"time": "18:00", "type": "dining", "name": "老正兴", "description": "上海老字号", "price": 90, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "20:00", "type": "hotel", "name": "南京路附近酒店", "description": "市中心", "price": 398, "image": "/static/images/attractions/waitan.jpg"}
+          ]
+        },
+        {
+          "day": 2,
+          "activities": [
+            {"time": "09:00", "type": "attraction", "name": "田子坊", "description": "创意园区", "price": 0, "image": "/static/images/attractions/yuyuan.jpg"},
+            {"time": "11:00", "type": "attraction", "name": "新天地", "description": "时尚地标", "price": 0, "image": "/static/images/attractions/waitan.jpg"},
+            {"time": "13:00", "type": "dining", "name": "小杨生煎", "description": "上海名小吃", "price": 30, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "15:00", "type": "attraction", "name": "武康路", "description": "梧桐树下的老洋房", "price": 0, "image": "/static/images/attractions/waitan.jpg"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sy-4days-001",
+      "city": "三亚",
+      "city_id": "sanya",
+      "days": 4,
+      "name": "三亚4天3晚海岛度假游",
+      "description": "椰风海韵，潜水冲浪，热带天堂之旅",
+      "popularity": 90,
+      "price_range": "2500-4500元",
+      "tags": ["海滨", "度假", "潜水", "热带"],
+      "cover_image": "/static/images/attractions/xihu.jpg",
+      "itinerary": [
+        {
+          "day": 1,
+          "activities": [
+            {"time": "10:00", "type": "attraction", "name": "亚龙湾", "description": "天下第一湾，白沙滩", "price": 0, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "12:00", "type": "dining", "name": "海鲜大餐", "description": "三亚第一市场海鲜", "price": 200, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "15:00", "type": "attraction", "name": "亚龙湾热带天堂森林公园", "description": "鸟巢度假村，非诚勿扰取景地", "price": 158, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "18:00", "type": "dining", "name": "椰子鸡", "description": "海南特色", "price": 100, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "20:00", "type": "hotel", "name": "亚龙湾度假酒店", "description": "海景房", "price": 688, "image": "/static/images/attractions/xihu.jpg"}
+          ]
+        },
+        {
+          "day": 2,
+          "activities": [
+            {"time": "08:30", "type": "attraction", "name": "蜈支洲岛", "description": "中国的马尔代夫，潜水胜地", "price": 136, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "12:00", "type": "dining", "name": "岛上餐厅", "description": "海景午餐", "price": 80, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "14:00", "type": "attraction", "name": "蜈支洲岛潜水", "description": "珊瑚礁潜水体验", "price": 380, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "18:00", "type": "dining", "name": "清补凉", "description": "海南消暑甜品", "price": 15, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "19:00", "type": "dining", "name": "文昌鸡", "description": "海南四大名菜之首", "price": 80, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "20:30", "type": "hotel", "name": "亚龙湾度假酒店", "description": "继续入住", "price": 688, "image": "/static/images/attractions/xihu.jpg"}
+          ]
+        },
+        {
+          "day": 3,
+          "activities": [
+            {"time": "09:00", "type": "attraction", "name": "南山文化旅游区", "description": "108米海上观音", "price": 122, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "12:00", "type": "dining", "name": "素斋", "description": "南山素斋", "price": 50, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "14:00", "type": "attraction", "name": "天涯海角", "description": "天之涯，海之角", "price": 68, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "16:30", "type": "attraction", "name": "三亚湾", "description": "椰梦长廊看日落", "price": 0, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "18:30", "type": "dining", "name": "加积鸭", "description": "海南名菜", "price": 90, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "20:00", "type": "hotel", "name": "亚龙湾度假酒店", "description": "继续入住", "price": 688, "image": "/static/images/attractions/xihu.jpg"}
+          ]
+        },
+        {
+          "day": 4,
+          "activities": [
+            {"time": "09:00", "type": "attraction", "name": "呀诺达雨林", "description": "热带雨林探险", "price": 138, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "12:00", "type": "dining", "name": "黎族风味", "description": "少数民族美食", "price": 60, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "14:00", "type": "attraction", "name": "大东海", "description": "游泳冲浪", "price": 0, "image": "/static/images/attractions/xihu.jpg"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gl-3days-001",
+      "city": "桂林",
+      "city_id": "guilin",
+      "days": 3,
+      "name": "桂林3天2晚山水游",
+      "description": "桂林山水甲天下，漓江阳朔精华游",
+      "popularity": 89,
+      "price_range": "1500-2500元",
+      "tags": ["山水", "自然", "漓江"],
+      "cover_image": "/static/images/attractions/xihu.jpg",
+      "itinerary": [
+        {
+          "day": 1,
+          "activities": [
+            {"time": "09:00", "type": "attraction", "name": "象鼻山", "description": "桂林城徽", "price": 55, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "11:00", "type": "attraction", "name": "两江四湖", "description": "城市水系风光", "price": 190, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "13:00", "type": "dining", "name": "桂林米粉", "description": "地道桂林米粉", "price": 15, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "15:00", "type": "attraction", "name": "靖江王城", "description": "明代藩王府邸", "price": 0, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "18:00", "type": "dining", "name": "啤酒鱼", "description": "阳朔名菜", "price": 80, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "20:00", "type": "hotel", "name": "桂林市区酒店", "description": "近两江四湖", "price": 258, "image": "/static/images/attractions/xihu.jpg"}
+          ]
+        },
+        {
+          "day": 2,
+          "activities": [
+            {"time": "08:00", "type": "attraction", "name": "漓江游船", "description": "桂林到阳朔，百里画廊", "price": 216, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "12:30", "type": "dining", "name": "阳朔西街美食", "description": "中西合璧", "price": 60, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "14:00", "type": "attraction", "name": "阳朔西街", "description": "洋人街，购物休闲", "price": 0, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "16:00", "type": "attraction", "name": "十里画廊", "description": "骑行最美乡村公路", "price": 0, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "18:30", "type": "dining", "name": "竹筒饭", "description": "当地特色", "price": 35, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "20:00", "type": "hotel", "name": "阳朔民宿", "description": "遇龙河边", "price": 228, "image": "/static/images/attractions/xihu.jpg"}
+          ]
+        },
+        {
+          "day": 3,
+          "activities": [
+            {"time": "08:00", "type": "attraction", "name": "遇龙河竹筏", "description": "人工竹筏漂流", "price": 160, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "11:00", "type": "attraction", "name": "银子岩", "description": "溶洞奇观", "price": 65, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "13:00", "type": "dining", "name": "荔浦芋扣肉", "description": "桂林名菜", "price": 45, "image": "/static/images/dining/restaurant.jpg"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "qd-3days-001",
+      "city": "青岛",
+      "city_id": "qingdao",
+      "days": 3,
+      "name": "青岛3天2晚海滨度假游",
+      "description": "红瓦绿树碧海蓝天，欧式建筑与啤酒之城",
+      "popularity": 84,
+      "price_range": "1200-2000元",
+      "tags": ["海滨", "啤酒", "欧式建筑"],
+      "cover_image": "/static/images/attractions/xihu.jpg",
+      "itinerary": [
+        {
+          "day": 1,
+          "activities": [
+            {"time": "09:00", "type": "attraction", "name": "栈桥", "description": "青岛标志，百年栈桥", "price": 0, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "10:30", "type": "attraction", "name": "八大关", "description": "万国建筑博览会", "price": 0, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "12:00", "type": "dining", "name": "海鲜大排档", "description": "青岛海鲜", "price": 120, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "14:00", "type": "attraction", "name": "五四广场", "description": "城市新地标", "price": 0, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "16:00", "type": "attraction", "name": "奥帆中心", "description": "2008奥运帆船赛场", "price": 0, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "18:00", "type": "dining", "name": "青岛啤酒+海鲜", "description": "原浆啤酒配海鲜", "price": 100, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "20:00", "type": "hotel", "name": "海边民宿", "description": "推窗见海", "price": 328, "image": "/static/images/attractions/xihu.jpg"}
+          ]
+        },
+        {
+          "day": 2,
+          "activities": [
+            {"time": "09:00", "type": "attraction", "name": "崂山", "description": "海上名山第一", "price": 90, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "12:00", "type": "dining", "name": "崂山农家宴", "description": "山珍海味", "price": 60, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "14:00", "type": "attraction", "name": "青岛啤酒博物馆", "description": "百年青啤，免费品酒", "price": 50, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "16:30", "type": "attraction", "name": "小鱼山公园", "description": "俯瞰红瓦绿树", "price": 10, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "18:30", "type": "dining", "name": "船歌鱼水饺", "description": "墨鱼水饺", "price": 70, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "20:00", "type": "hotel", "name": "海边民宿", "description": "继续入住", "price": 328, "image": "/static/images/attractions/xihu.jpg"}
+          ]
+        },
+        {
+          "day": 3,
+          "activities": [
+            {"time": "09:00", "type": "attraction", "name": "金沙滩", "description": "亚洲第一滩", "price": 0, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "12:00", "type": "dining", "name": "辣炒蛤蜊", "description": "青岛必吃", "price": 40, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "14:00", "type": "attraction", "name": "德国风情街", "description": "百年德式建筑", "price": 0, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "16:00", "type": "attraction", "name": "信号山公园", "description": "360度观青岛", "price": 5, "image": "/static/images/attractions/xihu.jpg"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sz-3days-001",
+      "city": "苏州",
+      "city_id": "suzhou",
+      "days": 3,
+      "name": "苏州3天2晚园林水乡游",
+      "description": "江南园林甲天下，苏州园林甲江南",
+      "popularity": 86,
+      "price_range": "1200-2000元",
+      "tags": ["园林", "水乡", "文化"],
+      "cover_image": "/static/images/attractions/xihu.jpg",
+      "itinerary": [
+        {
+          "day": 1,
+          "activities": [
+            {"time": "09:00", "type": "attraction", "name": "拙政园", "description": "中国四大名园之一", "price": 70, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "11:00", "type": "attraction", "name": "苏州博物馆", "description": "贝聿铭设计", "price": 0, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "12:30", "type": "dining", "name": "松鹤楼", "description": "苏州百年老字号", "price": 90, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "14:00", "type": "attraction", "name": "狮子林", "description": "假山王国", "price": 40, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "16:00", "type": "attraction", "name": "平江路", "description": "千年古街，小桥流水", "price": 0, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "18:00", "type": "dining", "name": "得月楼", "description": "苏帮菜名店", "price": 100, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "20:00", "type": "hotel", "name": "平江路附近客栈", "description": "古城区内", "price": 288, "image": "/static/images/attractions/xihu.jpg"}
+          ]
+        },
+        {
+          "day": 2,
+          "activities": [
+            {"time": "08:30", "type": "attraction", "name": "虎丘", "description": "吴中第一名胜", "price": 60, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "11:00", "type": "attraction", "name": "留园", "description": "中国四大名园", "price": 55, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "12:30", "type": "dining", "name": "哑巴生煎", "description": "苏州名小吃", "price": 20, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "14:00", "type": "attraction", "name": "寒山寺", "description": "姑苏城外寒山寺", "price": 20, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "16:00", "type": "attraction", "name": "山塘街", "description": "七里山塘", "price": 0, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "18:30", "type": "dining", "name": "同得兴", "description": "苏式面馆", "price": 30, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "20:00", "type": "hotel", "name": "平江路附近客栈", "description": "继续入住", "price": 288, "image": "/static/images/attractions/xihu.jpg"}
+          ]
+        },
+        {
+          "day": 3,
+          "activities": [
+            {"time": "08:00", "type": "attraction", "name": "周庄", "description": "中国第一水乡", "price": 100, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "11:30", "type": "dining", "name": "万三蹄", "description": "周庄名吃", "price": 60, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "13:00", "type": "attraction", "name": "同里", "description": "东方小威尼斯", "price": 100, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "16:00", "type": "dining", "name": "太湖三白", "description": "白鱼白虾银鱼", "price": 80, "image": "/static/images/dining/restaurant.jpg"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "nj-3days-001",
+      "city": "南京",
+      "city_id": "nanjing",
+      "days": 3,
+      "name": "南京3天2晚古都记忆游",
+      "description": "六朝古都的沧桑与辉煌，秦淮河畔的历史回响",
+      "popularity": 85,
+      "price_range": "1200-2000元",
+      "tags": ["历史", "文化", "美食"],
+      "cover_image": "/static/images/attractions/xihu.jpg",
+      "itinerary": [
+        {
+          "day": 1,
+          "activities": [
+            {"time": "09:00", "type": "attraction", "name": "中山陵", "description": "中国近代民主革命先行者孙中山陵墓", "price": 0, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "11:30", "type": "attraction", "name": "明孝陵", "description": "明太祖朱元璋陵墓", "price": 70, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "13:00", "type": "dining", "name": "南京大牌档", "description": "金陵风味小吃", "price": 60, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "15:00", "type": "attraction", "name": "总统府", "description": "中国近代史博物馆", "price": 35, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "17:30", "type": "attraction", "name": "夫子庙秦淮河", "description": "桨声灯影里的秦淮河", "price": 0, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "19:00", "type": "dining", "name": "鸭血粉丝汤", "description": "南京必吃", "price": 18, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "20:00", "type": "hotel", "name": "夫子庙附近酒店", "description": "近秦淮河", "price": 268, "image": "/static/images/attractions/xihu.jpg"}
+          ]
+        },
+        {
+          "day": 2,
+          "activities": [
+            {"time": "09:00", "type": "attraction", "name": "侵华日军南京大屠杀遇难同胞纪念馆", "description": "铭记历史，珍爱和平", "price": 0, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "12:00", "type": "dining", "name": "盐水鸭", "description": "南京特产", "price": 50, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "14:00", "type": "attraction", "name": "玄武湖", "description": "江南最大城内公园", "price": 0, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "16:00", "type": "attraction", "name": "鸡鸣寺", "description": "南朝四百八十寺之首", "price": 10, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "18:00", "type": "dining", "name": "狮子桥美食街", "description": "各种南京小吃", "price": 50, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "20:00", "type": "hotel", "name": "夫子庙附近酒店", "description": "继续入住", "price": 268, "image": "/static/images/attractions/xihu.jpg"}
+          ]
+        },
+        {
+          "day": 3,
+          "activities": [
+            {"time": "09:00", "type": "attraction", "name": "南京博物院", "description": "中国三大博物馆之一", "price": 0, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "12:00", "type": "dining", "name": "小笼包", "description": "南京汤包", "price": 25, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "13:30", "type": "attraction", "name": "老门东", "description": "金陵文化缩影", "price": 0, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "16:00", "type": "attraction", "name": "雨花台", "description": "革命烈士陵园", "price": 0, "image": "/static/images/attractions/xihu.jpg"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cq-3days-001",
+      "city": "重庆",
+      "city_id": "chongqing",
+      "days": 3,
+      "name": "重庆3天2晚山城火锅游",
+      "description": "8D魔幻城市，火锅与夜景的完美组合",
+      "popularity": 92,
+      "price_range": "1200-2000元",
+      "tags": ["美食", "山城", "夜景", "网红"],
+      "cover_image": "/static/images/attractions/xihu.jpg",
+      "itinerary": [
+        {
+          "day": 1,
+          "activities": [
+            {"time": "10:00", "type": "attraction", "name": "洪崖洞", "description": "现实版千与千寻", "price": 0, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "12:00", "type": "dining", "name": "洞子火锅", "description": "防空洞里的火锅", "price": 100, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "14:00", "type": "attraction", "name": "解放碑", "description": "重庆地标，西部第一街", "price": 0, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "16:00", "type": "attraction", "name": "长江索道", "description": "飞渡长江的空中巴士", "price": 20, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "18:00", "type": "dining", "name": "重庆小面", "description": "地道重庆味道", "price": 15, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "19:30", "type": "attraction", "name": "南滨路夜景", "description": "重庆夜景最佳观赏地", "price": 0, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "21:00", "type": "hotel", "name": "解放碑附近酒店", "description": "市中心", "price": 328, "image": "/static/images/attractions/xihu.jpg"}
+          ]
+        },
+        {
+          "day": 2,
+          "activities": [
+            {"time": "09:00", "type": "attraction", "name": "磁器口古镇", "description": "千年古镇，小重庆", "price": 0, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "11:00", "type": "dining", "name": "陈麻花", "description": "磁器口特产", "price": 20, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "12:30", "type": "dining", "name": "毛血旺", "description": "磁器口名菜", "price": 60, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "14:00", "type": "attraction", "name": "李子坝轻轨", "description": "轻轨穿楼奇观", "price": 0, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "15:30", "type": "attraction", "name": "鹅岭二厂", "description": "文艺打卡地", "price": 0, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "18:00", "type": "dining", "name": "九宫格火锅", "description": "正宗重庆火锅", "price": 110, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "20:00", "type": "hotel", "name": "解放碑附近酒店", "description": "继续入住", "price": 328, "image": "/static/images/attractions/xihu.jpg"}
+          ]
+        },
+        {
+          "day": 3,
+          "activities": [
+            {"time": "08:00", "type": "attraction", "name": "武隆天生三桥", "description": "世界自然遗产，变形金刚取景地", "price": 125, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "12:00", "type": "dining", "name": "武隆羊肉", "description": "当地特色", "price": 50, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "14:00", "type": "attraction", "name": "仙女山", "description": "东方瑞士", "price": 60, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "17:00", "type": "dining", "name": "烤鱼", "description": "重庆烤鱼", "price": 80, "image": "/static/images/dining/restaurant.jpg"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gz-3days-001",
+      "city": "广州",
+      "city_id": "guangzhou",
+      "days": 3,
+      "name": "广州3天2晚美食文化游",
+      "description": "食在广州，从早茶到夜宵的味蕾盛宴",
+      "popularity": 87,
+      "price_range": "1500-2500元",
+      "tags": ["美食", "早茶", "文化", "现代"],
+      "cover_image": "/static/images/attractions/xihu.jpg",
+      "itinerary": [
+        {
+          "day": 1,
+          "activities": [
+            {"time": "08:00", "type": "dining", "name": "陶陶居早茶", "description": "百年老字号广式早茶", "price": 80, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "10:00", "type": "attraction", "name": "沙面岛", "description": "欧式风情小岛", "price": 0, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "12:00", "type": "attraction", "name": "陈家祠", "description": "岭南建筑艺术明珠", "price": 10, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "14:00", "type": "dining", "name": "肠粉", "description": "银记肠粉", "price": 20, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "15:00", "type": "attraction", "name": "北京路步行街", "description": "千年商道", "price": 0, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "18:00", "type": "dining", "name": "炳胜品味", "description": "粤菜名店", "price": 120, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "20:00", "type": "attraction", "name": "珠江夜游", "description": "广州塔灯光秀", "price": 88, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "21:30", "type": "hotel", "name": "北京路附近酒店", "description": "市中心", "price": 318, "image": "/static/images/attractions/xihu.jpg"}
+          ]
+        },
+        {
+          "day": 2,
+          "activities": [
+            {"time": "08:00", "type": "dining", "name": "点都德早茶", "description": "人气早茶", "price": 65, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "10:00", "type": "attraction", "name": "广州塔", "description": "小蛮腰，城市地标", "price": 150, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "12:30", "type": "dining", "name": "煲仔饭", "description": "超记煲仔饭", "price": 35, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "14:00", "type": "attraction", "name": "越秀公园", "description": "五羊石像，广州标志", "price": 0, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "16:00", "type": "attraction", "name": "上下九步行街", "description": "西关风情", "price": 0, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "18:30", "type": "dining", "name": "白切鸡", "description": "清平鸡", "price": 70, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "20:00", "type": "hotel", "name": "北京路附近酒店", "description": "继续入住", "price": 318, "image": "/static/images/attractions/xihu.jpg"}
+          ]
+        },
+        {
+          "day": 3,
+          "activities": [
+            {"time": "08:30", "type": "dining", "name": "莲香楼早茶", "description": "老字号", "price": 55, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "10:00", "type": "attraction", "name": "白云山", "description": "羊城第一秀", "price": 5, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "12:30", "type": "dining", "name": "艇仔粥", "description": "广州名小吃", "price": 15, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "14:00", "type": "attraction", "name": "黄埔军校旧址", "description": "近代史地标", "price": 0, "image": "/static/images/attractions/xihu.jpg"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "szh-2days-001",
+      "city": "深圳",
+      "city_id": "shenzhen",
+      "days": 2,
+      "name": "深圳2天1晚科技滨海游",
+      "description": "感受科技创新之城的魅力，世界之窗与海滨风光",
+      "popularity": 82,
+      "price_range": "1000-1800元",
+      "tags": ["现代", "科技", "海滨", "主题乐园"],
+      "cover_image": "/static/images/attractions/xihu.jpg",
+      "itinerary": [
+        {
+          "day": 1,
+          "activities": [
+            {"time": "09:00", "type": "attraction", "name": "世界之窗", "description": "一天游遍世界", "price": 200, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "12:30", "type": "dining", "name": "欢乐海岸美食", "description": "创意餐饮", "price": 80, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "14:00", "type": "attraction", "name": "欢乐谷", "description": "大型主题乐园", "price": 230, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "18:00", "type": "dining", "name": "椰子鸡", "description": "深圳名菜", "price": 90, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "20:00", "type": "hotel", "name": "南山科技园酒店", "description": "近世界之窗", "price": 298, "image": "/static/images/attractions/xihu.jpg"}
+          ]
+        },
+        {
+          "day": 2,
+          "activities": [
+            {"time": "09:00", "type": "attraction", "name": "深圳湾公园", "description": "滨海休闲带", "price": 0, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "11:00", "type": "attraction", "name": "华侨城创意园", "description": "艺术创意园区", "price": 0, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "12:30", "type": "dining", "name": "潮汕牛肉火锅", "description": "深圳特色", "price": 85, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "14:00", "type": "attraction", "name": "大梅沙海滨公园", "description": "深圳最美海滩", "price": 0, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "16:00", "type": "attraction", "name": "市民中心", "description": "深圳CBD建筑群", "price": 0, "image": "/static/images/attractions/xihu.jpg"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bj-2days-001",
+      "city": "北京",
+      "city_id": "beijing",
+      "days": 2,
+      "name": "北京2天1晚周末游",
+      "description": "故宫长城一日游，北京精华周末打卡",
+      "popularity": 88,
+      "price_range": "1000-1800元",
+      "tags": ["历史", "周末", "经典"],
+      "cover_image": "/static/images/attractions/forbidden_city.jpg",
+      "itinerary": [
+        {
+          "day": 1,
+          "activities": [
+            {"time": "08:00", "type": "attraction", "name": "天安门广场", "description": "世界最大城市广场", "price": 0, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "09:00", "type": "attraction", "name": "故宫博物院", "description": "明清皇宫", "price": 60, "image": "/static/images/attractions/forbidden_city.jpg"},
+            {"time": "12:30", "type": "dining", "name": "四季民福烤鸭", "description": "故宫旁的烤鸭店", "price": 150, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "14:30", "type": "attraction", "name": "景山公园", "description": "俯瞰故宫全景", "price": 2, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "16:00", "type": "attraction", "name": "南锣鼓巷", "description": "老北京胡同", "price": 0, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "18:30", "type": "dining", "name": "炸酱面", "description": "正宗老北京味", "price": 35, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "20:00", "type": "hotel", "name": "前门快捷酒店", "description": "近天安门", "price": 268, "image": "/static/images/attractions/xihu.jpg"}
+          ]
+        },
+        {
+          "day": 2,
+          "activities": [
+            {"time": "07:00", "type": "attraction", "name": "八达岭长城", "description": "不到长城非好汉", "price": 40, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "12:00", "type": "dining", "name": "农家菜", "description": "长城脚下", "price": 50, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "14:00", "type": "attraction", "name": "鸟巢水立方", "description": "奥运场馆外观", "price": 0, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "16:00", "type": "dining", "name": "东来顺", "description": "涮羊肉", "price": 130, "image": "/static/images/dining/restaurant.jpg"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sy-3days-001",
+      "city": "三亚",
+      "city_id": "sanya",
+      "days": 3,
+      "name": "三亚3天2晚度假游",
+      "description": "阳光沙滩椰林，热带海岛短途度假",
+      "popularity": 88,
+      "price_range": "2000-3500元",
+      "tags": ["海滨", "度假", "热带"],
+      "cover_image": "/static/images/attractions/xihu.jpg",
+      "itinerary": [
+        {
+          "day": 1,
+          "activities": [
+            {"time": "10:00", "type": "attraction", "name": "亚龙湾", "description": "天下第一湾", "price": 0, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "12:00", "type": "dining", "name": "海鲜大排档", "description": "三亚海鲜", "price": 150, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "15:00", "type": "attraction", "name": "亚龙湾热带天堂", "description": "非诚勿扰取景地", "price": 158, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "18:00", "type": "dining", "name": "椰子鸡", "description": "海南特色", "price": 100, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "20:00", "type": "hotel", "name": "三亚湾度假酒店", "description": "海景房", "price": 588, "image": "/static/images/attractions/xihu.jpg"}
+          ]
+        },
+        {
+          "day": 2,
+          "activities": [
+            {"time": "08:30", "type": "attraction", "name": "蜈支洲岛", "description": "潜水天堂", "price": 136, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "12:00", "type": "dining", "name": "岛上餐厅", "description": "海景午餐", "price": 80, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "14:00", "type": "attraction", "name": "天涯海角", "description": "浪漫地标", "price": 68, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "17:00", "type": "attraction", "name": "三亚湾椰梦长廊", "description": "最美日落", "price": 0, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "18:30", "type": "dining", "name": "文昌鸡", "description": "海南名菜", "price": 80, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "20:00", "type": "hotel", "name": "三亚湾度假酒店", "description": "继续入住", "price": 588, "image": "/static/images/attractions/xihu.jpg"}
+          ]
+        },
+        {
+          "day": 3,
+          "activities": [
+            {"time": "09:00", "type": "attraction", "name": "南山文化旅游区", "description": "108米海上观音", "price": 122, "image": "/static/images/attractions/xihu.jpg"},
+            {"time": "12:00", "type": "dining", "name": "南山素斋", "description": "佛门素宴", "price": 50, "image": "/static/images/dining/restaurant.jpg"},
+            {"time": "14:00", "type": "attraction", "name": "大东海", "description": "游泳冲浪", "price": 0, "image": "/static/images/attractions/xihu.jpg"}
+          ]
+        }
+      ]
+    }
+  ]
+}
